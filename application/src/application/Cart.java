@@ -3,10 +3,13 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.*;
+import javax.swing.table.*;
+
 import java.sql.*;
 public class Cart {
 
 	ImageIcon cart = new ImageIcon(getClass().getResource("cart_logo.png"));
+	ImageIcon cart_bg = new ImageIcon(getClass().getResource("cart_bg.jpg"));
 	
 	static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 	static final String NAME = "root";
@@ -58,35 +61,45 @@ public class Cart {
 	
 	public void show_cart() throws ClassNotFoundException, SQLException
 	{
+		Object[] columns = {"Name","Quantity","MRP"};
 		JFrame f = new JFrame("Cart");
 		f.setBounds(550,150,600,450);
 		f.setIconImage(cart.getImage());
+		JLabel bg = new JLabel("",cart_bg,JLabel.CENTER);
+		bg.setBounds(0,0,600,450);
+		f.add(bg);
 		JTable medt = new JTable();
-		medt.setBounds(30,25,460,330);
-		f.add(medt);
+		medt.setBounds(30,25,460,300);
+		bg.add(medt);
+		DefaultTableModel medt1 = new DefaultTableModel();
+		medt1.setColumnIdentifiers(columns);
+		medt.setModel(medt1);
+		medt.setRowHeight(25);
+		Object[] row = new Object[4];
 		JScrollPane sp = new JScrollPane(medt);
-		sp.setBounds(30,25,460,330);
-		Class.forName(DRIVER);
-		f.add(sp);
+		sp.setBackground(Color.white);
+		sp.setBounds(30,25,460,300);
+		bg.add(sp);
 		JButton co = new JButton("Checkout");
-		co.setBounds(360,360,100,40);
-		f.add(co);
+		co.setBounds(330,350,100,40);
+		bg.add(co);
 		JButton clr = new JButton("Clear cart");
-		clr.setBounds(470,360,100,40);
+		clr.setBounds(460,350,100,40);
 		JButton add = new JButton("+");
 		add.setBounds(512,50,50,50);
-		f.add(add);
+		bg.add(add);
 		JButton rmv = new JButton("-");
 		rmv.setBounds(512,115,50,50);
-		f.add(rmv);
+		bg.add(rmv);
 		JButton dlt = new JButton("Delete");
 		dlt.setBounds(497,180,80,40);
-		f.add(dlt);
+		bg.add(dlt);
 		JLabel jl = new JLabel("No items selected");
 		jl.setBounds(220,150,300,20);
 		jl.setFont(new Font("Times New Roman",Font.PLAIN,20));
 		jl.setForeground(Color.red);
-		f.add(jl);
+		bg.add(jl);
+		Class.forName(DRIVER);
 		connection = DriverManager.getConnection(URL,NAME,PASSWORD);
 		statement = connection.createStatement();
 		query = "select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'cart';";
@@ -94,6 +107,15 @@ public class Cart {
 		if(result.next())
 		{
 			jl.setVisible(false);
+			query = "select * from cart;";
+			result = statement.executeQuery(query);
+			while(result.next())
+			{
+				row[0]=result.getString("name");
+				row[1]=result.getString("quantity");
+				row[2]=result.getString("mrp");
+				medt1.addRow(row);
+			}
 		}
 		else
 		{
@@ -123,10 +145,99 @@ public class Cart {
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				query = "delete from cart;";
+				query = "drop table if exists cart;";
+				try {
+					statement.execute(query);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				jl.setVisible(true);
+				sp.setVisible(false);
+				medt.setVisible(false);
+				add.setVisible(false);
+				rmv.setVisible(false);
+				dlt.setVisible(false);
+				clr.setVisible(false);
+				co.setVisible(false);
 			}
 		});
-		f.add(clr);
+		dlt.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				int i = medt.getSelectedRow();
+				if(i>=0)
+				medt1.removeRow(i);
+			}
+		});
+		add.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				int i = medt.getSelectedRow();
+				if(i>=0)
+				{
+					int a = Integer.parseInt(medt1.getValueAt(i, 1).toString());
+					++a;
+					medt1.setValueAt(a, i, 1);
+					String name1,quantity1,mrp1;
+					name1 = medt1.getValueAt(i, 0).toString();
+					quantity1 = medt1.getValueAt(i, 1).toString();
+					mrp1 = medt1.getValueAt(i, 2).toString();
+					query = "update cart set quantity = "+quantity1+" where name = '"+name1+"' and mrp = "+mrp1+";";
+					try {
+						statement.execute(query);
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+			}
+		});
+		rmv.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				int i = medt.getSelectedRow();
+				if(i>=0)
+				{
+					int a = Integer.parseInt(medt1.getValueAt(i, 1).toString());
+					if(a>1)
+					{
+						--a;
+						medt1.setValueAt(a, i, 1);
+						String name1,quantity1,mrp1;
+						name1 = medt1.getValueAt(i, 0).toString();
+						quantity1 = medt1.getValueAt(i, 1).toString();
+						mrp1 = medt1.getValueAt(i, 2).toString();
+						query = "update cart set quantity = "+quantity1+" where name = '"+name1+"' and mrp = "+mrp1+";";
+						try {
+							statement.execute(query);
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+					else
+					{
+						String name1,quantity1,mrp1;
+						name1 = medt1.getValueAt(i, 0).toString();
+						quantity1 = medt1.getValueAt(i, 1).toString();
+						mrp1 = medt1.getValueAt(i, 2).toString();
+						query = "delete from cart where name = '"+name1+"' and mrp = "+mrp1+";";
+						try {
+							statement.execute(query);
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						medt1.removeRow(i);
+					}
+				}
+			}
+		});
+		bg.add(clr);
 		f.setLayout(null);
 		f.setVisible(true);
 		f.setResizable(false);
@@ -137,7 +248,7 @@ public class Cart {
 		Class.forName(DRIVER);
 		connection = DriverManager.getConnection(URL,NAME,PASSWORD);
 		statement = connection.createStatement();
-		query = "drop table cart";
+		query = "drop table if exists cart;";
 		statement.execute(query);
 	}
 	

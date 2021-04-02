@@ -3,6 +3,8 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.*;
+import javax.swing.table.*;
+
 import java.sql.*;
 public class Home {
 
@@ -18,7 +20,7 @@ public class Home {
 	
 	static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 	static final String NAME = "root";
-	static final String PASSWORD = "Niveshine150";
+	static final String PASSWORD = "rootpassword";
 	static final String URL = "jdbc:mysql://localhost:3306/dbs_v1";
 	static Connection connection;
 	static String query;
@@ -28,12 +30,19 @@ public class Home {
 	static String pswrd;
 	
 	
-	public void home_display(String str) throws ClassNotFoundException, SQLException
+	public void home_display(String str,int status) throws ClassNotFoundException, SQLException
 	{
 		strg = str;
 		Class.forName(DRIVER);
 		connection = DriverManager.getConnection(URL,NAME,PASSWORD);
 		statement = connection.createStatement();
+		query="select * from employee where ID="+str+";";
+		result = statement.executeQuery(query);
+		if(result.next()&&status==1)
+		{
+			query = "insert into login values("+result.getString("ID")+",curtime(),curdate(),'"+result.getString("Password")+"','"+result.getString("Name")+"');";
+			statement.execute(query);
+		}
 		query="select * from employee where ID="+str+";";
 		result = statement.executeQuery(query);
 		if(result.next())
@@ -71,7 +80,8 @@ public class Home {
 		p1.add(p2);
 		JPanel p3 = new JPanel();
 		p3.setBounds(500,240,1040,620);
-		p3.setBackground(new Color(0,0,0,0));
+		p3.setBorder(blackline);
+		//p3.setBackground(new Color(0,0,0,0));
 		p3.setLayout(null);
 		p3.setVisible(true);
 		bg.add(p3);
@@ -97,7 +107,7 @@ public class Home {
         }
         catch(Exception e){}
 		p0.add(l1);
-		JButton new_acc = new JButton("Create New Account");
+		JButton new_acc = new JButton("Add new Employee");
 		new_acc.setBounds(1250, 75, 160, 40);
 		new_acc.addActionListener(new ActionListener()
 		{
@@ -303,8 +313,8 @@ public class Home {
 		JButton med = new JButton(medc);
 		med.setBounds(70,10,160,160);
 		p1.add(med);
-		JLabel medl = new JLabel("Medicines");
-		medl.setBounds(105,170,100,25);
+		JLabel medl = new JLabel("Stock");
+		medl.setBounds(125,170,100,25);
 		medl.setFont(new Font("",Font.PLAIN,20));
 		medl.setForeground(new Color(53,0,102));
 		p1.add(medl);
@@ -598,7 +608,7 @@ public class Home {
 							f.hide();
 							Home asp = new Home();
 							try {
-								asp.home_display(strg);
+								asp.home_display(strg,0);
 							} catch (ClassNotFoundException | SQLException e1) {
 								// TODO Auto-generated catch block
 								e1.printStackTrace();
@@ -625,7 +635,66 @@ public class Home {
 		
 		
 	///////////////////////////////////////////////////////////////////	
-		
+		med.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				try {
+					new Stock().show_stock(strg);
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				query = "drop table if exists cart;";
+				try {
+					statement.execute(query);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				f.hide();
+			}
+		});
+		Object[] columns = {"ID","Time","Date","Password","Name"};
+		JTable lgin = new JTable();
+		lgin.setBounds(500,240,1040,620);
+		lgin.setRowHeight(25);
+		p3.add(lgin);
+		DefaultTableModel lgint = new DefaultTableModel();
+		lgint.setColumnIdentifiers(columns);
+		lgin.setModel(lgint);
+		JScrollPane sp = new JScrollPane(lgin);
+		sp.setBounds(0,0,1040,620);
+		p3.add(sp);
+		Object[] row = new Object[5];
+		if(!strg.equals("0"))
+		{
+			query = "select * from login where ID = "+strg+";";
+			result = statement.executeQuery(query);
+			while(result.next())
+			{
+				row[0]=result.getString("ID");
+				row[1]=result.getString("Time");
+				row[2]=result.getString("Date");
+				row[3]=result.getString("Password");
+				row[4]=result.getString("Name");
+				lgint.addRow(row);
+			}
+		}
+		else
+		{
+			query = "select * from login;";
+			result = statement.executeQuery(query);
+			while(result.next())
+			{
+				row[0]=result.getString("ID");
+				row[1]=result.getString("Time");
+				row[2]=result.getString("Date");
+				row[3]=result.getString("Password");
+				row[4]=result.getString("Name");
+				lgint.addRow(row);
+			}
+		}
 		f.setLayout(null);
 		f.setVisible(true);
 		f.setResizable(false);
@@ -634,6 +703,6 @@ public class Home {
 	}
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		Home b = new Home();
-		b.home_display("0");
+		b.home_display("0",0);
 	}
 }

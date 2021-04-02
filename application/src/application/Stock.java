@@ -14,6 +14,7 @@ public class Stock {
 	ImageIcon trnslogo = new ImageIcon(getClass().getResource("trns_logo.jpg"));
 	ImageIcon homelogo = new ImageIcon(getClass().getResource("home_logo.png"));
 	ImageIcon rfrshlogo = new ImageIcon(getClass().getResource("refresh_logo.png"));
+	ImageIcon panelbg1 = new ImageIcon(getClass().getResource("cart_bg.jpg"));
 			
 	static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 	static final String NAME = "root";
@@ -117,11 +118,14 @@ public class Stock {
 		p1.add(p2);
 		JPanel p3 = new JPanel();
 		p3.setBorder(blackline);
-		p3.setBounds(550,300,640,260);
+		p3.setBounds(550,300,603,260);
 		p3.setBackground(new Color(255,255,255));
 		p3.setLayout(null);
 		p3.setVisible(true);
 		bg.add(p3);
+		JLabel panelbg = new JLabel("",panelbg1,JLabel.CENTER);
+		panelbg.setBounds(-19,1,640,258);
+		p3.add(panelbg);
 		JLabel l0 = new JLabel();
 		l0.setText("Welcome,");
 		l0.setFont(new Font("Times New Roman",Font.BOLD,25));
@@ -257,100 +261,100 @@ public class Stock {
 		}//hemlo
 		bg.add(cbmed);
 		JLabel nmed = new JLabel();
-		nmed.setBounds(10,10,500,30);
+		nmed.setBounds(50,10,500,30);
 		try{
             Font font = Font.createFont(Font.TRUETYPE_FONT, Login.class.getResourceAsStream("Rene Bieder  Milliard Light.otf"));
             nmed.setFont(font.deriveFont(Font.BOLD, 25f));
         }
 		catch(Exception eg){}
 		nmed.setVisible(false);
-		p3.add(nmed);
+		panelbg.add(nmed);
 		JLabel cmpmed = new JLabel("Company: ");
-		cmpmed.setBounds(10,60,200,30);
+		cmpmed.setBounds(50,60,200,30);
 		try{
             Font font = Font.createFont(Font.TRUETYPE_FONT, Login.class.getResourceAsStream("Rene Bieder  Milliard Light.otf"));
             cmpmed.setFont(font.deriveFont(Font.BOLD, 18f));
         }
 		catch(Exception eg){}
 		cmpmed.setVisible(false);
-		p3.add(cmpmed);
+		panelbg.add(cmpmed);
 		JLabel cmpmedt = new JLabel();
-		cmpmedt.setBounds(140,60,200,30);
+		cmpmedt.setBounds(180,60,200,30);
 		try{
             Font font = Font.createFont(Font.TRUETYPE_FONT, Login.class.getResourceAsStream("Rene Bieder  Milliard Light.otf"));
             cmpmedt.setFont(font.deriveFont(Font.BOLD, 18f));
         }
 		catch(Exception eg){}
 		cmpmedt.setVisible(false);
-		p3.add(cmpmedt);
+		panelbg.add(cmpmedt);
 		JLabel btchmed = new JLabel("Batch no: ");
-		btchmed.setBounds(10,100,200,30);
+		btchmed.setBounds(50,100,200,30);
 		try{
             Font font = Font.createFont(Font.TRUETYPE_FONT, Login.class.getResourceAsStream("Rene Bieder  Milliard Light.otf"));
             btchmed.setFont(font.deriveFont(Font.BOLD, 18f));
         }
 		catch(Exception eg){}
 		btchmed.setVisible(false);
-		p3.add(btchmed);
+		panelbg.add(btchmed);
 		JLabel btchmedt = new JLabel();
-		btchmedt.setBounds(140,100,200,30);
+		btchmedt.setBounds(180,100,200,30);
 		try{
             Font font = Font.createFont(Font.TRUETYPE_FONT, Login.class.getResourceAsStream("Rene Bieder  Milliard Light.otf"));
             btchmedt.setFont(font.deriveFont(Font.BOLD, 18f));
         }
 		catch(Exception eg){}
-		p3.add(btchmedt);
+		panelbg.add(btchmedt);
 		JLabel DOMed = new JLabel("MFG Date: ");
-		DOMed.setBounds(10,140,200,30);
+		DOMed.setBounds(50,140,200,30);
 		try{
             Font font = Font.createFont(Font.TRUETYPE_FONT, Login.class.getResourceAsStream("Rene Bieder  Milliard Light.otf"));
             DOMed.setFont(font.deriveFont(Font.BOLD, 18f));
         }
 		catch(Exception eg){}
 		DOMed.setVisible(false);
-		p3.add(DOMed);
+		panelbg.add(DOMed);
 		JLabel DOMedt = new JLabel();
-		DOMedt.setBounds(140,140,200,30);
+		DOMedt.setBounds(180,140,200,30);
 		try{
             Font font = Font.createFont(Font.TRUETYPE_FONT, Login.class.getResourceAsStream("Rene Bieder  Milliard Light.otf"));
             DOMedt.setFont(font.deriveFont(Font.BOLD, 18f));
         }
 		catch(Exception eg){}
-		p3.add(DOMedt);
+		panelbg.add(DOMedt);
 		JLabel DOEed = new JLabel("Expiry Date: ");
-		DOEed.setBounds(10,180,200,30);
+		DOEed.setBounds(50,180,200,30);
 		try{
             Font font = Font.createFont(Font.TRUETYPE_FONT, Login.class.getResourceAsStream("Rene Bieder  Milliard Light.otf"));
             DOEed.setFont(font.deriveFont(Font.BOLD, 18f));
         }
 		catch(Exception eg){}
 		DOEed.setVisible(false);
-		p3.add(DOEed);
+		panelbg.add(DOEed);
 		JLabel DOEedt = new JLabel();
-		DOEedt.setBounds(140,180,200,30);
+		DOEedt.setBounds(180,180,200,30);
 		try{
             Font font = Font.createFont(Font.TRUETYPE_FONT, Login.class.getResourceAsStream("Rene Bieder  Milliard Light.otf"));
             DOEedt.setFont(font.deriveFont(Font.BOLD, 18f));
         }
 		catch(Exception eg){}
-		p3.add(DOEedt);
+		panelbg.add(DOEedt);
 		JLabel typeed = new JLabel("Type of drug: ");
-		typeed.setBounds(10,220,200,30);
+		typeed.setBounds(50,220,200,30);
 		try{
             Font font = Font.createFont(Font.TRUETYPE_FONT, Login.class.getResourceAsStream("Rene Bieder  Milliard Light.otf"));
             typeed.setFont(font.deriveFont(Font.BOLD, 18f));
         }
 		catch(Exception eg){}
 		typeed.setVisible(false);
-		p3.add(typeed);
+		panelbg.add(typeed);
 		JLabel typeedt = new JLabel();
-		typeedt.setBounds(140,220,200,30);
+		typeedt.setBounds(180,220,200,30);
 		try{
             Font font = Font.createFont(Font.TRUETYPE_FONT, Login.class.getResourceAsStream("Rene Bieder  Milliard Light.otf"));
             typeedt.setFont(font.deriveFont(Font.BOLD, 18f));
         }
 		catch(Exception eg){}
-		p3.add(typeedt);
+		panelbg.add(typeedt);
 		JLabel mrpmed = new JLabel("MRP: ");
 		mrpmed.setBounds(400,60,200,30);
 		try{
@@ -359,7 +363,7 @@ public class Stock {
         }
 		catch(Exception eg){}
 		mrpmed.setVisible(false);
-		p3.add(mrpmed);
+		panelbg.add(mrpmed);
 		JLabel mrpmedt = new JLabel();
 		mrpmedt.setBounds(530,60,200,30);
 		try{
@@ -368,7 +372,7 @@ public class Stock {
         }
 		catch(Exception eg){}
 		mrpmedt.setVisible(false);
-		p3.add(mrpmedt);
+		panelbg.add(mrpmedt);
 		JLabel cosmed = new JLabel("Cost price: ");
 		cosmed.setBounds(400,100,200,30);
 		try{
@@ -377,7 +381,7 @@ public class Stock {
         }
 		catch(Exception eg){}
 		cosmed.setVisible(false);
-		p3.add(cosmed);
+		panelbg.add(cosmed);
 		JLabel cosmedt = new JLabel();
 		cosmedt.setBounds(530,100,200,30);
 		try{
@@ -386,7 +390,7 @@ public class Stock {
         }
 		catch(Exception eg){}
 		cosmedt.setVisible(false);
-		p3.add(cosmedt);
+		panelbg.add(cosmedt);
 		JLabel qtymed = new JLabel("Qty. in Stock: ");
 		qtymed.setBounds(400,140,200,30);
 		try{
@@ -395,7 +399,7 @@ public class Stock {
         }
 		catch(Exception eg){}
 		qtymed.setVisible(false);
-		p3.add(qtymed);
+		panelbg.add(qtymed);
 		JLabel qtymedt = new JLabel();
 		qtymedt.setBounds(530,140,200,30);
 		try{
@@ -404,7 +408,7 @@ public class Stock {
         }
 		catch(Exception eg){}
 		qtymedt.setVisible(false);
-		p3.add(qtymedt);
+		panelbg.add(qtymedt);
 		JButton refresh = new JButton(rfrshlogo);
 		refresh.setBounds(1100,240,40,40);
 		bg.add(refresh);
@@ -468,7 +472,7 @@ public class Stock {
 			public void actionPerformed(ActionEvent e)
 			{
 				try {
-					new Home().home_display(strg);
+					new Home().home_display(strg,0);
 				} catch (ClassNotFoundException | SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

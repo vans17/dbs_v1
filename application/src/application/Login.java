@@ -116,7 +116,7 @@ public class Login
 								if(result.getString("Password").equals(s))
 								{
 									f.hide();
-									new Home().home_display(t);
+									new Home().home_display(t,1);
 									//System.out.println("Login successful!");
 								}
 								else
