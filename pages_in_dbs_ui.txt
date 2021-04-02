@@ -1,0 +1,7 @@
+1.login
+2.home
+3.stock
+4.company
+5.purchase
+6.sale
+7.customer
