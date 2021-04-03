@@ -536,6 +536,19 @@ public class Stock {
 				qtymedt.setVisible(true);
 			}
 		});
+		cmp.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				try {
+					new Company().Company_display(strg);
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				f.hide();
+			}
+		});
 		cart.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)

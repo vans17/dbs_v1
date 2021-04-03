@@ -175,11 +175,11 @@ public class Cart {
 			public void actionPerformed(ActionEvent e)
 			{
 				int i = medt.getSelectedRow();
-				String name1,quantity1,mrp1;
-				name1 = medt1.getValueAt(i, 0).toString();
-				mrp1 = medt1.getValueAt(i, 2).toString();
 				if(i>=0)
 				{
+					String name1,quantity1,mrp1;
+					name1 = medt1.getValueAt(i, 0).toString();
+					mrp1 = medt1.getValueAt(i, 2).toString();
 					medt1.removeRow(i);
 					query = "delete from cart where name = '"+name1+"' and mrp = "+mrp1+";";
 					try {
