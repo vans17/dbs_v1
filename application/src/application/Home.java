@@ -243,7 +243,7 @@ public class Home {
 							
 						}
 						else  {
-							String query="insert into dbs_v1.employee values('"+s_id+"','"+s_add+"','"+s_name+"','"+s_doj+"','"+s_dob+"','"+s_pass+"','"+s_sal+"'); ";
+							query="insert into dbs_v1.employee values('"+s_id+"','"+s_add+"','"+s_name+"','"+s_doj+"','"+s_dob+"','"+s_pass+"','"+s_sal+"'); ";
 							try
 							{
 								statement.execute(query);
@@ -454,6 +454,13 @@ public class Home {
 		{
 			public void actionPerformed(ActionEvent e)
 			{
+				query = "select * from employee where ID = "+strg+";";
+				try {
+					result = statement.executeQuery(query);
+				} catch (SQLException e3) {
+					// TODO Auto-generated catch block
+					e3.printStackTrace();
+				}
 				JFrame ep = new JFrame("Edit Profile");
 				ep.setBounds(600,250,500,350);
 				ep.setIconImage(editlogo.getImage());
@@ -491,65 +498,43 @@ public class Home {
 				na.setFont(new Font("Times New Roman",Font.PLAIN,16));
 				bg1.add(na);
 				JTextField eda = new JTextField();
-				try {
-					eda.setText(result.getString("Name"));
-				} catch (SQLException e2) {
-					// TODO Auto-generated catch block
-					e2.printStackTrace();
-				}
 				eda.setBounds(250,30,200,30);
 				eda.setFont(new Font("Times New Roman",Font.PLAIN,16));
 				bg1.add(eda);
 				JTextField edb = new JTextField();
 				edb.setBounds(250,60,200,30);
-				try {
-					edb.setText(result.getString("Salary"));
-				} catch (SQLException e2) {
-					// TODO Auto-generated catch block
-					e2.printStackTrace();
-				}
 				edb.setFont(new Font("Times New Roman",Font.PLAIN,16));
 				bg1.add(edb);
 				JTextField edc = new JTextField();
 				edc.setBounds(250,90,200,30);
-				try {
-					edc.setText(result.getString("D_O_B"));
-				} catch (SQLException e2) {
-					// TODO Auto-generated catch block
-					e2.printStackTrace();
-				}
 				edc.setFont(new Font("Times New Roman",Font.PLAIN,16));
 				bg1.add(edc);
 				JTextField edd = new JTextField();
 				edd.setBounds(250,120,200,30);
-				try {
-					edd.setText(result.getString("Date_of_Joining"));
-				} catch (SQLException e2) {
-					// TODO Auto-generated catch block
-					e2.printStackTrace();
-				}
 				edd.setFont(new Font("Times New Roman",Font.PLAIN,16));
 				bg1.add(edd);
 				JTextField ede = new JTextField();
 				ede.setBounds(250,150,200,30);
-				try {
-					ede.setText(result.getString("Password"));
-				} catch (SQLException e2) {
-					// TODO Auto-generated catch block
-					e2.printStackTrace();
-				}
 				ede.setFont(new Font("Times New Roman",Font.PLAIN,16));
 				bg1.add(ede);
 				JTextField edf = new JTextField();
 				edf.setBounds(250,180,200,30);
+				edf.setFont(new Font("Times New Roman",Font.PLAIN,16));
+				bg1.add(edf);
 				try {
-					edf.setText(result.getString("Address"));
+					if(result.next())
+					{
+						eda.setText(result.getString("Name"));
+						edb.setText(result.getString("Salary"));
+						edc.setText(result.getString("D_O_B"));
+						edd.setText(result.getString("Date_of_Joining"));
+						ede.setText(result.getString("Password"));
+						edf.setText(result.getString("Address"));
+					}
 				} catch (SQLException e2) {
 					// TODO Auto-generated catch block
 					e2.printStackTrace();
 				}
-				edf.setFont(new Font("Times New Roman",Font.PLAIN,16));
-				bg1.add(edf);
 				JButton save = new JButton("Save Changes");
 				save.setFont(new Font("",Font.BOLD,13));
 				save.setBounds(220, 250, 125, 35);
