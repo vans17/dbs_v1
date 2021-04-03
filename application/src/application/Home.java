@@ -21,7 +21,7 @@ public class Home {
 	
 	static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 	static final String NAME = "root";
-	static final String PASSWORD = "rootpassword";
+	static final String PASSWORD = "Sharvani17#";
 	static final String URL = "jdbc:mysql://localhost:3306/dbs_v1";
 	static Connection connection;
 	static String query;
@@ -636,6 +636,21 @@ public class Home {
 				f.hide();
 			}
 		});
+		
+		cmp.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				try {
+					new Company().Company_display(strg);
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				f.hide();
+			}
+		});
+		
 		Object[] columns = {"ID","Time","Date","Password","Name"};
 		JTable lgin = new JTable();
 		lgin.setBounds(500,240,1040,620);
