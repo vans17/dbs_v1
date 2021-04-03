@@ -431,21 +431,20 @@ public class Home {
 						f.hide();
 						try {
 							new Main().main(null);
-						} catch (InstantiationException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						} catch (IllegalAccessException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						} catch (ClassNotFoundException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						} catch (SQLException e1) {
+						} catch (InstantiationException | IllegalAccessException | ClassNotFoundException
+								| SQLException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
 					}
 				});
+				query = "drop table if exists cart;";
+				try {
+					statement.execute(query);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				lgt.setLayout(null);
 				lgt.setVisible(true);
 				lgt.setResizable(false);
@@ -642,13 +641,6 @@ public class Home {
 				try {
 					new Stock().show_stock(strg);
 				} catch (ClassNotFoundException | SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				query = "drop table if exists cart;";
-				try {
-					statement.execute(query);
-				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}

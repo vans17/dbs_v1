@@ -138,6 +138,14 @@ public class Cart {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+				jl.setVisible(true);
+				sp.setVisible(false);
+				medt.setVisible(false);
+				add.setVisible(false);
+				rmv.setVisible(false);
+				dlt.setVisible(false);
+				clr.setVisible(false);
+				co.setVisible(false);
 				//f.hide();
 			}
 		});
@@ -167,8 +175,20 @@ public class Cart {
 			public void actionPerformed(ActionEvent e)
 			{
 				int i = medt.getSelectedRow();
+				String name1,quantity1,mrp1;
+				name1 = medt1.getValueAt(i, 0).toString();
+				mrp1 = medt1.getValueAt(i, 2).toString();
 				if(i>=0)
-				medt1.removeRow(i);
+				{
+					medt1.removeRow(i);
+					query = "delete from cart where name = '"+name1+"' and mrp = "+mrp1+";";
+					try {
+						statement.execute(query);
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
 			}
 		});
 		add.addActionListener(new ActionListener()
