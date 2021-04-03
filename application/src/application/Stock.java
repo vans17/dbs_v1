@@ -15,6 +15,7 @@ public class Stock {
 	ImageIcon homelogo = new ImageIcon(getClass().getResource("home_logo.png"));
 	ImageIcon rfrshlogo = new ImageIcon(getClass().getResource("refresh_logo.png"));
 	ImageIcon panelbg1 = new ImageIcon(getClass().getResource("cart_bg.jpg"));
+	ImageIcon app_logo = new ImageIcon(getClass().getResource("app_logo.png"));
 			
 	static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 	static final String NAME = "root";
@@ -126,6 +127,9 @@ public class Stock {
 		JLabel panelbg = new JLabel("",panelbg1,JLabel.CENTER);
 		panelbg.setBounds(-19,1,640,258);
 		p3.add(panelbg);
+		JLabel aplog = new JLabel("",app_logo,JLabel.CENTER);
+		aplog.setBounds(750,50,200,100);
+		p0.add(aplog);
 		JLabel l0 = new JLabel();
 		l0.setText("Welcome,");
 		l0.setFont(new Font("Times New Roman",Font.BOLD,25));

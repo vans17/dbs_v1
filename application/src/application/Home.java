@@ -17,6 +17,7 @@ public class Home {
 	ImageIcon trnslogo = new ImageIcon(getClass().getResource("trns_logo.jpg"));
 	ImageIcon editlogo = new ImageIcon(getClass().getResource("edit_logo.jpg"));
 	ImageIcon white_bg = new ImageIcon(getClass().getResource("white_bg.jpg"));
+	ImageIcon app_logo = new ImageIcon(getClass().getResource("app_logo.png"));
 	
 	static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 	static final String NAME = "root";
@@ -85,6 +86,9 @@ public class Home {
 		p3.setLayout(null);
 		p3.setVisible(true);
 		bg.add(p3);
+		JLabel aplog = new JLabel("",app_logo,JLabel.CENTER);
+		aplog.setBounds(750,50,200,100);
+		p0.add(aplog);
 		JLabel l0 = new JLabel();
 		l0.setText("Welcome,");
 		l0.setFont(new Font("Times New Roman",Font.BOLD,25));
