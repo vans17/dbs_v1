@@ -21,6 +21,7 @@ public class Cart {
 	static ResultSet result;
 	static String strg;
 	static String pswrd;
+	//dfjhngjndfjgn
 	
 	public void add_to_Cart(String cmpname,String btchno) throws ClassNotFoundException, SQLException
 	{
