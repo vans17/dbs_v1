@@ -506,8 +506,7 @@ public class Stock {
 			{
 				Stock b = new Stock();
 				String idmed1 = b.extract_ID(cbmed.getSelectedItem().toString());
-				String cmpmed1 = b.extract_Company(cbmed.getSelectedItem().toString());
-				query = "select * from medicine where Company = '"+cmpmed1+"' and Batch_no = '"+idmed1+"';";
+				query = "select * from medicine where Batch_no = '"+idmed1+"';";
 				try {
 					result = statement.executeQuery(query);
 					if(result.next())
@@ -904,44 +903,44 @@ public class Stock {
 								if(a.length()==0)
 								msg2.setVisible(true);
 								else
-								{query = "select * from medicine where Batch_no = "+edb.getText().toString()+" and Company = '"+edd.getText().toString()+"';";
+								{query = "select * from medicine where Batch_no = "+edb.getText().toString()+";";
 								result = statement.executeQuery(query);
 								if(result.next()&&!a.equals(" "))
 								{
 									a=eda.getText().toString();
 									if(a.length()==0)
 									a=" ";
-									query = "update medicine set Name = '"+a+"' where Batch_no = "+edb.getText().toString()+" and Company = '"+edd.getText().toString()+"';";
+									query = "update medicine set Name = '"+a+"' where Batch_no = "+edb.getText().toString()+" ;";
 									statement.execute(query);
 									a=edc.getText().toString();
 									if(a.length()==0)
 									a=" ";
-									query = "update medicine set Type = '"+a+"' where Batch_no = "+edb.getText().toString()+" and Company = '"+edd.getText().toString()+"';";
+									query = "update medicine set Type = '"+a+"' where Batch_no = "+edb.getText().toString()+" ;";
 									statement.execute(query);
 									a=ede.getText().toString();
 									if(a.length()==0)
 									a="0";
-									query = "update medicine set Cost = "+a+" where Batch_no = "+edb.getText().toString()+" and Company = '"+edd.getText().toString()+"';";
+									query = "update medicine set Cost = "+a+" where Batch_no = "+edb.getText().toString()+" ;";
 									statement.execute(query);
 									a=edf.getText().toString();
 									if(a.length()==0)
 									a="0000-00-00";
-									query = "update medicine set D_O_M = '"+a+"' where Batch_no = "+edb.getText().toString()+" and Company = '"+edd.getText().toString()+"';";
+									query = "update medicine set D_O_M = '"+a+"' where Batch_no = "+edb.getText().toString()+" ;";
 									statement.execute(query);
 									a=edg.getText().toString();
 									if(a.length()==0)
 									a="0000-00-00";
-									query = "update medicine set D_O_E = '"+a+"' where Batch_no = "+edb.getText().toString()+" and Company = '"+edd.getText().toString()+"';";
+									query = "update medicine set D_O_E = '"+a+"' where Batch_no = "+edb.getText().toString()+" ;";
 									statement.execute(query);
 									a=edh.getText().toString();
 									if(a.length()==0)
 									a="0";
-									query = "update medicine set MRP = "+a+" where Batch_no = "+edb.getText().toString()+" and Company = '"+edd.getText().toString()+"';";
+									query = "update medicine set MRP = "+a+" where Batch_no = "+edb.getText().toString()+" ;";
 									statement.execute(query);
 									a=edi.getText().toString();
 									if(a.length()==0)
 									a="0";
-									query = "update medicine set Quantity = "+a+" where Batch_no = "+edb.getText().toString()+" and Company = '"+edd.getText().toString()+"';";
+									query = "update medicine set Quantity = "+a+" where Batch_no = "+edb.getText().toString()+" ;";
 									statement.execute(query);
 									edmed.hide();
 									f.hide();
