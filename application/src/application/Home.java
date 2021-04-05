@@ -767,6 +767,15 @@ public class Home {
 						}
 					}
 				});
+				cnclcont.addActionListener(new ActionListener()
+				{
+
+					public void actionPerformed(ActionEvent e) 
+					{
+						adcont.hide();
+					}
+					
+				});
 				adcont.setBounds(700,300,400,180);
 				adcont.setLayout(null);
 				adcont.setVisible(true);
