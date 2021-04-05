@@ -26,8 +26,11 @@ public class Home {
 	static final String URL = "jdbc:mysql://localhost:3306/dbs_v1";
 	static Connection connection;
 	static String query;
+	static String q1;
 	static Statement statement;
+	static Statement statement1;
 	static ResultSet result;
+	static ResultSet r1;
 	static String strg;
 	static String pswrd;
 	
@@ -38,6 +41,7 @@ public class Home {
 		Class.forName(DRIVER);
 		connection = DriverManager.getConnection(URL,NAME,PASSWORD);
 		statement = connection.createStatement();
+		statement1 = connection.createStatement();
 		query="select * from employee where ID="+str+";";
 		result = statement.executeQuery(query);
 		if(result.next()&&status==1)
@@ -769,6 +773,10 @@ public class Home {
 				adcont.setResizable(false);
 			}
 		});
+		JButton rmvcont = new JButton ("Remove selected contact");
+		rmvcont.setBounds(500,700,250,50);
+		rmvcont.setFont(new Font("",Font.BOLD,16));
+		bg.add(rmvcont);
 		if(!strg.equals("0"))
 		{
 			Object[] clmn = {"Contact"};
@@ -784,36 +792,86 @@ public class Home {
 			bg.add(sp1);
 			query = "select * from employee_contact where ID = "+strg+";";
 			result = statement.executeQuery(query);
-			Object[] row1 = new Object[1];
+			Object[] row1 = new Object[2];
 			while(result.next())
 			{
 				row1[0] = result.getString("Contact_no");
 				empcntt.addRow(row1);
 			}
+			rmvcont.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					int i = empcnt.getSelectedRow();
+					if(i>=0)
+					{
+						String no1;
+						no1 = empcntt.getValueAt(i, 0).toString().trim();
+						query = "delete from employee_contact where ID = "+strg+" and Contact_no = "+no1+";";
+						try {
+							empcntt.removeRow(i);
+							statement.execute(query);
+							f.hide();
+							new Home().home_display(strg, 0);
+						} catch (SQLException | ClassNotFoundException e2) {
+							// TODO Auto-generated catch block
+							e2.printStackTrace();
+						}
+					}
+				}
+			});
 		}
 		else
 		{
 			Object[] clmn = {"Name","ID","Contact"};
 			JTable empcnt = new JTable();
-			empcnt.setBounds(1000,600,300,100);
+			empcnt.setBounds(1000,600,450,100);
 			empcnt.setRowHeight(25);
 			bg.add(empcnt);
 			DefaultTableModel empcntt = new DefaultTableModel();
 			empcntt.setColumnIdentifiers(clmn);
 			empcnt.setModel(empcntt);
 			JScrollPane sp1 = new JScrollPane(empcnt);
-			sp1.setBounds(1000,600,300,100);
+			sp1.setBounds(1000,600,450,100);
 			bg.add(sp1);
 			query = "select * from employee_contact;";
 			result = statement.executeQuery(query);
 			Object[] row1 = new Object[3];
 			while(result.next())
 			{
-				row1[0] = str;
-				row1[1] = strg;
+				q1 = "select * from employee where ID = "+result.getString("ID")+";";
+				r1 = statement1.executeQuery(q1);
+				if(r1.next())
+				{
+					row1[0] = r1.getString("Name");
+				}
+				row1[1] = result.getString("ID");
 				row1[2] = result.getString("Contact_no");
 				empcntt.addRow(row1);
 			}
+			rmvcont.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					int i = empcnt.getSelectedRow();
+					if(i>=0)
+					{
+						String id1,no1;
+						id1 = empcntt.getValueAt(i, 1).toString().trim();
+						no1 = empcntt.getValueAt(i, 2).toString().trim();
+						query = "delete from employee_contact where ID = "+id1+" and Contact_no = "+no1+";";
+						try {
+							empcntt.removeRow(i);
+							statement.execute(query);
+							f.hide();
+							new Home().home_display(strg, 0);
+						} catch (SQLException | ClassNotFoundException e2) {
+							// TODO Auto-generated catch block
+							e2.printStackTrace();
+						}
+					}
+				}
+			});
 		}
 		f.setLayout(null);
 		f.setVisible(true);
