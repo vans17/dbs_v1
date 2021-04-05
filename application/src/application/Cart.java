@@ -29,7 +29,7 @@ public class Cart {
 		statement = connection.createStatement();
 		query = "create table if not exists cart (name varchar(45) ,quantity int,mrp int, primary key(name,mrp));";
 		statement.execute(query);
-		query = "select * from medicine where Batch_no='"+btchno+"' and company='"+cmpname+"';";
+		query = "select * from medicine where Batch_no="+btchno+";";
 		result = statement.executeQuery(query);
 		String name="",mrp="";
 		if(result.next())
@@ -178,8 +178,8 @@ public class Cart {
 				if(i>=0)
 				{
 					String name1,quantity1,mrp1;
-					name1 = medt1.getValueAt(i, 0).toString();
-					mrp1 = medt1.getValueAt(i, 2).toString();
+					name1 = medt1.getValueAt(i, 0).toString().trim();
+					mrp1 = medt1.getValueAt(i, 2).toString().trim();
 					medt1.removeRow(i);
 					query = "delete from cart where name = '"+name1+"' and mrp = "+mrp1+";";
 					try {
@@ -198,13 +198,13 @@ public class Cart {
 				int i = medt.getSelectedRow();
 				if(i>=0)
 				{
-					int a = Integer.parseInt(medt1.getValueAt(i, 1).toString());
+					int a = Integer.parseInt(medt1.getValueAt(i, 1).toString().trim());
 					++a;
 					medt1.setValueAt(a, i, 1);
 					String name1,quantity1,mrp1;
-					name1 = medt1.getValueAt(i, 0).toString();
-					quantity1 = medt1.getValueAt(i, 1).toString();
-					mrp1 = medt1.getValueAt(i, 2).toString();
+					name1 = medt1.getValueAt(i, 0).toString().trim();
+					quantity1 = medt1.getValueAt(i, 1).toString().trim();
+					mrp1 = medt1.getValueAt(i, 2).toString().trim();
 					query = "update cart set quantity = "+quantity1+" where name = '"+name1+"' and mrp = "+mrp1+";";
 					try {
 						statement.execute(query);
@@ -222,15 +222,15 @@ public class Cart {
 				int i = medt.getSelectedRow();
 				if(i>=0)
 				{
-					int a = Integer.parseInt(medt1.getValueAt(i, 1).toString());
+					int a = Integer.parseInt(medt1.getValueAt(i, 1).toString().trim());
 					if(a>1)
 					{
 						--a;
 						medt1.setValueAt(a, i, 1);
 						String name1,quantity1,mrp1;
-						name1 = medt1.getValueAt(i, 0).toString();
-						quantity1 = medt1.getValueAt(i, 1).toString();
-						mrp1 = medt1.getValueAt(i, 2).toString();
+						name1 = medt1.getValueAt(i, 0).toString().trim();
+						quantity1 = medt1.getValueAt(i, 1).toString().trim();
+						mrp1 = medt1.getValueAt(i, 2).toString().trim();
 						query = "update cart set quantity = "+quantity1+" where name = '"+name1+"' and mrp = "+mrp1+";";
 						try {
 							statement.execute(query);
@@ -242,9 +242,9 @@ public class Cart {
 					else
 					{
 						String name1,quantity1,mrp1;
-						name1 = medt1.getValueAt(i, 0).toString();
-						quantity1 = medt1.getValueAt(i, 1).toString();
-						mrp1 = medt1.getValueAt(i, 2).toString();
+						name1 = medt1.getValueAt(i, 0).toString().trim();
+						quantity1 = medt1.getValueAt(i, 1).toString().trim();
+						mrp1 = medt1.getValueAt(i, 2).toString().trim();
 						query = "delete from cart where name = '"+name1+"' and mrp = "+mrp1+";";
 						try {
 							statement.execute(query);

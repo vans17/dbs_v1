@@ -18,6 +18,7 @@ public class Home {
 	ImageIcon editlogo = new ImageIcon(getClass().getResource("edit_logo.jpg"));
 	ImageIcon white_bg = new ImageIcon(getClass().getResource("white_bg.jpg"));
 	ImageIcon app_logo = new ImageIcon(getClass().getResource("app_logo.png"));
+	ImageIcon cont_logo = new ImageIcon(getClass().getResource("cont_logo.png"));
 	
 	static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 	static final String NAME = "root";
@@ -80,9 +81,9 @@ public class Home {
 		p2.setVisible(true);
 		p1.add(p2);
 		JPanel p3 = new JPanel();
-		p3.setBounds(500,240,1040,620);
+		p3.setBounds(500,240,1040,320);
 		p3.setBorder(blackline);
-		//p3.setBackground(new Color(0,0,0,0));
+		p3.setBackground(new Color(0,0,0,0));
 		p3.setLayout(null);
 		p3.setVisible(true);
 		bg.add(p3);
@@ -229,13 +230,13 @@ public class Home {
 					public void actionPerformed(ActionEvent e)
 					{
 						
-						String s_id=edz.getText().toString();
-						String s_name=eda.getText().toString();
-						String s_sal=edb.getText().toString();
-						String s_dob=edc.getText().toString();
-						String s_doj=edd.getText().toString();
-						String s_pass=ede.getText().toString();
-						String s_add=edf.getText().toString();
+						String s_id=edz.getText().toString().trim();
+						String s_name=eda.getText().toString().trim();
+						String s_sal=edb.getText().toString().trim();
+						String s_dob=edc.getText().toString().trim();
+						String s_doj=edd.getText().toString().trim();
+						String s_pass=ede.getText().toString().trim();
+						String s_add=edf.getText().toString().trim();
 						
 						if(s_name.length()==0) {
 							
@@ -558,37 +559,37 @@ public class Home {
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						if((ede.getText().toString().length()<6||ede.getText().toString().length()>14)&&!eda.getText().toString().equals("admin"))
+						if((ede.getText().toString().trim().length()<6||ede.getText().toString().trim().length()>14)&&!eda.getText().toString().trim().equals("admin"))
 						err.setVisible(true);
 						else {
 						try {
 							String a;
-							a=eda.getText().toString();
+							a=eda.getText().toString().trim();
 							if(a.equals(""))
 							a=" ";
 							query = "update employee set Name = '"+a+"' where ID = '"+strg+"';";
 							statement.execute(query);
-							a=edb.getText().toString();
+							a=edb.getText().toString().trim();
 							if(a.equals(""))
 							a="0";
 							query = "update employee set Salary = '"+a+"' where ID = '"+strg+"';";
 							statement.execute(query);
-							a=ede.getText().toString();
+							a=ede.getText().toString().trim();
 							if(a.equals(""))
 							a=" ";
 							query = "update employee set Password = '"+a+"' where ID = '"+strg+"';";
 							statement.execute(query);
-							a=edf.getText().toString();
+							a=edf.getText().toString().trim();
 							if(a.equals(""))
 							a=" ";
 							query = "update employee set Address = '"+a+"' where ID = '"+strg+"';";
 							statement.execute(query);
-							a=edc.getText().toString();
+							a=edc.getText().toString().trim();
 							if(a.equals(""))
 							a="0000-00-00";
 							query = "update employee set D_O_B = '"+a+"' where ID = '"+strg+"';";
 							statement.execute(query);
-							a=edd.getText().toString();
+							a=edd.getText().toString().trim();
 							if(a.equals(""))
 							a="0000-00-00";
 							query = "update employee set Date_of_Joining = '"+a+"' where ID = '"+strg+"';";
@@ -653,14 +654,14 @@ public class Home {
 		
 		Object[] columns = {"ID","Time","Date","Name"};
 		JTable lgin = new JTable();
-		lgin.setBounds(500,240,1040,620);
+		lgin.setBounds(500,240,1040,320);
 		lgin.setRowHeight(25);
 		p3.add(lgin);
 		DefaultTableModel lgint = new DefaultTableModel();
 		lgint.setColumnIdentifiers(columns);
 		lgin.setModel(lgint);
 		JScrollPane sp = new JScrollPane(lgin);
-		sp.setBounds(0,0,1040,620);
+		sp.setBounds(0,0,1040,320);
 		p3.add(sp);
 		Object[] row = new Object[4];
 		if(!strg.equals("0"))
@@ -687,6 +688,131 @@ public class Home {
 				row[2]=result.getString("Date");
 				row[3]=result.getString("Name");
 				lgint.addRow(row);
+			}
+		}
+		JButton cont = new JButton ("Add contact details");
+		cont.setBounds(500,600,200,50);
+		cont.setFont(new Font("",Font.BOLD,16));
+		bg.add(cont);
+		cont.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				JFrame adcont = new JFrame("Contact Details");
+				adcont.getContentPane().setBackground(Color.white);
+				adcont.setIconImage(cont_logo.getImage());
+				JLabel num = new JLabel("Enter your number:");
+				num.setBounds(20,40,200,20);
+				num.setFont(new Font("Times New Roman",Font.PLAIN,16));
+				adcont.add(num);
+				JTextField numtf = new JTextField();
+				numtf.setBounds(170,40,200,20);
+				numtf.setFont(new Font("Times New Roman",Font.PLAIN,16));
+				adcont.add(numtf);
+				JLabel noerr = new JLabel("*Invalid contact number");
+				noerr.setBounds(160,60,200,30);
+				noerr.setFont(new Font("Times New Roman",Font.PLAIN,16));
+				noerr.setForeground(Color.red);
+				noerr.setVisible(false);
+				adcont.add(noerr);
+				JLabel duperr = new JLabel("*Duplicate contact number");
+				duperr.setBounds(160,60,200,30);
+				duperr.setFont(new Font("Times New Roman",Font.PLAIN,16));
+				duperr.setForeground(Color.red);
+				duperr.setVisible(false);
+				adcont.add(duperr);
+				JButton savecont = new JButton("Add number");
+				savecont.setBounds(150,100,120,30);
+				adcont.add(savecont);
+				JButton cnclcont = new JButton("Cancel");
+				cnclcont.setBounds(290,100,80,30);
+				adcont.add(cnclcont);
+				savecont.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
+						noerr.setVisible(false);
+						duperr.setVisible(false);
+						String contact = numtf.getText().toString().trim();
+						if(contact.length()<6||contact.length()>10)
+						noerr.setVisible(true);
+						else
+						{
+							query = "select * from employee_contact where ID = "+strg+" and Contact_no = "+contact+";";
+							try {
+								result = statement.executeQuery(query);
+								if(!result.next())
+								{
+									query = "insert into employee_contact values ("+contact+","+strg+");";
+									try {
+										statement.execute(query);
+										adcont.hide();
+										f.hide();
+										new Home().home_display(strg, 0);
+									} catch (SQLException | ClassNotFoundException e1) {
+										// TODO Auto-generated catch block
+										e1.printStackTrace();
+									}
+								}
+								else
+								duperr.setVisible(true);
+							} catch (SQLException e2) {
+								// TODO Auto-generated catch block
+								e2.printStackTrace();
+							}
+						}
+					}
+				});
+				adcont.setBounds(700,300,400,180);
+				adcont.setLayout(null);
+				adcont.setVisible(true);
+				adcont.setResizable(false);
+			}
+		});
+		if(!strg.equals("0"))
+		{
+			Object[] clmn = {"Contact"};
+			JTable empcnt = new JTable();
+			empcnt.setBounds(1000,600,100,100);
+			empcnt.setRowHeight(25);
+			bg.add(empcnt);
+			DefaultTableModel empcntt = new DefaultTableModel();
+			empcntt.setColumnIdentifiers(clmn);
+			empcnt.setModel(empcntt);
+			JScrollPane sp1 = new JScrollPane(empcnt);
+			sp1.setBounds(1000,600,100,100);
+			bg.add(sp1);
+			query = "select * from employee_contact where ID = "+strg+";";
+			result = statement.executeQuery(query);
+			Object[] row1 = new Object[1];
+			while(result.next())
+			{
+				row1[0] = result.getString("Contact_no");
+				empcntt.addRow(row1);
+			}
+		}
+		else
+		{
+			Object[] clmn = {"Name","ID","Contact"};
+			JTable empcnt = new JTable();
+			empcnt.setBounds(1000,600,300,100);
+			empcnt.setRowHeight(25);
+			bg.add(empcnt);
+			DefaultTableModel empcntt = new DefaultTableModel();
+			empcntt.setColumnIdentifiers(clmn);
+			empcnt.setModel(empcntt);
+			JScrollPane sp1 = new JScrollPane(empcnt);
+			sp1.setBounds(1000,600,300,100);
+			bg.add(sp1);
+			query = "select * from employee_contact;";
+			result = statement.executeQuery(query);
+			Object[] row1 = new Object[3];
+			while(result.next())
+			{
+				row1[0] = str;
+				row1[1] = strg;
+				row1[2] = result.getString("Contact_no");
+				empcntt.addRow(row1);
 			}
 		}
 		f.setLayout(null);

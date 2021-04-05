@@ -350,16 +350,16 @@ public void Company_display(String str) throws ClassNotFoundException, SQLExcept
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					if((dctf.getText().toString().length()==0))
+					if((dctf.getText().toString().trim().length()==0))
 					checkname.setVisible(true);
-					else if ((dctf1.getText().toString().length()!=10)){
+					else if ((dctf1.getText().toString().trim().length()!=10)){
 					 checknumber.setVisible(true);
 					}
 					else {
 						try {
 							String a,a1;
-							a=dctf.getText().toString();
-							a1=dctf1.getText().toString();
+							a=dctf.getText().toString().trim();
+							a1=dctf1.getText().toString().trim();
 							  String query = "delete from company_contact where Company=? and Contact_no=?";
 								      PreparedStatement preparedStmt = connection.prepareStatement(query);
 								      preparedStmt.setString (1, a);
@@ -486,16 +486,16 @@ public void Company_display(String str) throws ClassNotFoundException, SQLExcept
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					if((actf.getText().toString().length()==0))
+					if((actf.getText().toString().trim().length()==0))
 					checkname.setVisible(true);
-					else if ((actf1.getText().toString().length()!=10)){
+					else if ((actf1.getText().toString().trim().length()!=10)){
 					 checknumber.setVisible(true);
 					}
 					else {
 					try {
 						String a,a1;
-						a=actf.getText().toString();
-						a1=actf1.getText().toString();
+						a=actf.getText().toString().trim();
+						a1=actf1.getText().toString().trim();
 						//int number= Integer.parseInt(a1);
 						 String query = " insert into company_contact (Company,Contact_no)"
 							        + " values (?, ?)";
@@ -600,23 +600,23 @@ public void Company_display(String str) throws ClassNotFoundException, SQLExcept
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					if((ucdt.getText().toString().length()==0))
+					if((ucdt.getText().toString().trim().length()==0))
 					checkname.setVisible(true);
 					else {
 					try {
 						String a,a1;
-						a=ucdt.getText().toString();
-						a1=ucdt1.getText().toString();
+						a=ucdt.getText().toString().trim();
+						a1=ucdt1.getText().toString().trim();
 						if(!a1.equals("")) {
 						query = "update Company set State = '"+a1+"' where Name = '"+a+"';";
 						statement.execute(query);
 						}
-						a1=ucdt2.getText().toString();
+						a1=ucdt2.getText().toString().trim();
 						if(!a1.equals("")) {
 						query = "update Company set City = '"+a1+"' where Name = '"+a+"';";
 						statement.execute(query);
 						}
-						a1=ucdt3.getText().toString();
+						a1=ucdt3.getText().toString().trim();
 						if(!a1.equals("")) {
 						int pin =Integer.parseInt(a1);
 						query = "update Company set Pin = '"+a1+"' where Name = '"+a+"';";
@@ -690,12 +690,12 @@ public void Company_display(String str) throws ClassNotFoundException, SQLExcept
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					if((rctf.getText().toString().length()==0))
+					if((rctf.getText().toString().trim().length()==0))
 					checkname.setVisible(true);
 					else {
 					try {
 						String a;
-						a=rctf.getText().toString();
+						a=rctf.getText().toString().trim();
 						  String query = "delete from company where name=?";
 							      PreparedStatement preparedStmt = connection.prepareStatement(query);
 							      preparedStmt.setString (1, a);
@@ -803,20 +803,20 @@ public void Company_display(String str) throws ClassNotFoundException, SQLExcept
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					if((nctf.getText().toString().length()==0))
+					if((nctf.getText().toString().trim().length()==0))
 					checkname.setVisible(true);
 					else {
 					try {
 						String a,a1,a2,a3;
 						int pincode;
-						a=nctf.getText().toString();
-						a1=nctf1.getText().toString();
+						a=nctf.getText().toString().trim();
+						a1=nctf1.getText().toString().trim();
 						if(a1.equals(""))
 						a1=" ";
-						a2=nctf2.getText().toString();
+						a2=nctf2.getText().toString().trim();
 						if(a2.equals(""))
 						a2=" ";
-						a3=nctf3.getText().toString();
+						a3=nctf3.getText().toString().trim();
 						if(a3.equals(""))
 						a3="0";
 						pincode=Integer.parseInt(a3);
