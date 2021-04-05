@@ -9,7 +9,7 @@ import java.sql.*;
 public class Company {
 
 ImageIcon logo = new ImageIcon(getClass().getResource("logo.png"));
-ImageIcon bkgrd = new ImageIcon(getClass().getResource("home_bg.jpg"));
+ImageIcon bkgrd = new ImageIcon(getClass().getResource("company_bg.png"));
 ImageIcon medc = new ImageIcon(getClass().getResource("medicines.png"));
 ImageIcon lgt1 = new ImageIcon(getClass().getResource("logout.png"));
 ImageIcon cmplogo = new ImageIcon(getClass().getResource("cmp_logo.png"));

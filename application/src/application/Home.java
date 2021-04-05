@@ -120,7 +120,7 @@ public class Home {
 			public void actionPerformed(ActionEvent e)
 			{
 				JFrame ep = new JFrame("Create New Account");
-				ep.setBounds(600,250,500,450);
+				ep.setBounds(600,250,500,385);
 				ep.setIconImage(editlogo.getImage());
 
 				JLabel bg1 = new JLabel("",white_bg,JLabel.CENTER);
@@ -146,31 +146,31 @@ public class Home {
 				err.setBounds(120, 220, 300, 20);
 				err.setVisible(false);
 				bg1.add(err);
-				JLabel ni = new JLabel("New Id:");
+				JLabel ni = new JLabel("Id:");
 				ni.setBounds(50,30,300,30);
 				ni.setFont(new Font("Times New Roman",Font.PLAIN,16));
 				bg1.add(ni);
-				JLabel nn = new JLabel("New Name:");
+				JLabel nn = new JLabel("Name:");
 				nn.setBounds(50,60,300,30);
 				nn.setFont(new Font("Times New Roman",Font.PLAIN,16));
 				bg1.add(nn);
-				JLabel ns = new JLabel("New Salary:");
+				JLabel ns = new JLabel("Salary:");
 				ns.setBounds(50,90,100,30);
 				ns.setFont(new Font("Times New Roman",Font.PLAIN,16));
 				bg1.add(ns);
-				JLabel ndb = new JLabel("New DOB:");
+				JLabel ndb = new JLabel("DOB:");
 				ndb.setBounds(50,120,300,30);
 				ndb.setFont(new Font("Times New Roman",Font.PLAIN,16));
 				bg1.add(ndb);
-				JLabel ndj = new JLabel("New Date of Joining:");
+				JLabel ndj = new JLabel("Date of Joining:");
 				ndj.setBounds(50,150,300,30);
 				ndj.setFont(new Font("Times New Roman",Font.PLAIN,16));
 				bg1.add(ndj);
-				JLabel np = new JLabel("New Password:");
+				JLabel np = new JLabel("Password:");
 				np.setBounds(50,180,300,30);
 				np.setFont(new Font("Times New Roman",Font.PLAIN,16));
 				bg1.add(np);
-				JLabel na = new JLabel("New Address:");
+				JLabel na = new JLabel("Address:");
 				na.setBounds(50,210,300,30);
 				na.setFont(new Font("Times New Roman",Font.PLAIN,16));
 				bg1.add(na);
