@@ -59,6 +59,7 @@ public void Company_display(String str) throws ClassNotFoundException, SQLExcept
 	p0.setLayout(null);
 	p0.setVisible(true);
 	bg.add(p0);
+	
 	JPanel p1 = new JPanel();
 	p1.setBorder(blackline);
 	p1.setBounds(0,150,450,1080);
