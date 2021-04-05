@@ -21,7 +21,7 @@ public class Home {
 	
 	static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 	static final String NAME = "root";
-	static final String PASSWORD = "Niveshine150";
+	static final String PASSWORD = "rootpassword";
 	static final String URL = "jdbc:mysql://localhost:3306/dbs_v1";
 	static Connection connection;
 	static String query;
@@ -651,7 +651,7 @@ public class Home {
 			}
 		});
 		
-		Object[] columns = {"ID","Time","Date","Password","Name"};
+		Object[] columns = {"ID","Time","Date","Name"};
 		JTable lgin = new JTable();
 		lgin.setBounds(500,240,1040,620);
 		lgin.setRowHeight(25);
@@ -662,7 +662,7 @@ public class Home {
 		JScrollPane sp = new JScrollPane(lgin);
 		sp.setBounds(0,0,1040,620);
 		p3.add(sp);
-		Object[] row = new Object[5];
+		Object[] row = new Object[4];
 		if(!strg.equals("0"))
 		{
 			query = "select * from login where ID = "+strg+";";
@@ -672,8 +672,7 @@ public class Home {
 				row[0]=result.getString("ID");
 				row[1]=result.getString("Time");
 				row[2]=result.getString("Date");
-				row[3]=result.getString("Password");
-				row[4]=result.getString("Name");
+				row[3]=result.getString("Name");
 				lgint.addRow(row);
 			}
 		}
@@ -686,8 +685,7 @@ public class Home {
 				row[0]=result.getString("ID");
 				row[1]=result.getString("Time");
 				row[2]=result.getString("Date");
-				row[3]=result.getString("Password");
-				row[4]=result.getString("Name");
+				row[3]=result.getString("Name");
 				lgint.addRow(row);
 			}
 		}
