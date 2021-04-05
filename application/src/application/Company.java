@@ -9,7 +9,7 @@ import java.sql.*;
 public class Company {
 
 ImageIcon logo = new ImageIcon(getClass().getResource("logo.png"));
-ImageIcon bkgrd = new ImageIcon(getClass().getResource("company_bg.png"));
+ImageIcon bkgrd = new ImageIcon(getClass().getResource("new_company_bg.png"));
 ImageIcon medc = new ImageIcon(getClass().getResource("medicines.png"));
 ImageIcon lgt1 = new ImageIcon(getClass().getResource("logout.png"));
 ImageIcon cmplogo = new ImageIcon(getClass().getResource("cmp_logo.png"));
@@ -22,7 +22,7 @@ ImageIcon app_logo = new ImageIcon(getClass().getResource("app_logo.png"));
 
 static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 static final String NAME = "root";
-static final String PASSWORD = "rootpassword";
+static final String PASSWORD = "Sharvani17#";
 static final String URL = "jdbc:mysql://localhost:3306/dbs_v1";
 static Connection connection;
 static String query;
@@ -82,7 +82,7 @@ public void Company_display(String str) throws ClassNotFoundException, SQLExcept
 	JLabel l0 = new JLabel();
 	l0.setText("Welcome,");
 	l0.setFont(new Font("Times New Roman",Font.BOLD,25));
-	l0.setForeground(new Color(53,0,102));
+	l0.setForeground(new Color(0,0,0));
 	l0.setBounds(75,65,1000,40);
 	try{
         Font font = Font.createFont(Font.TRUETYPE_FONT, Login.class.getResourceAsStream("Rene Bieder  Milliard Light.otf"));
@@ -93,7 +93,7 @@ public void Company_display(String str) throws ClassNotFoundException, SQLExcept
 	JLabel l1 = new JLabel();
 	l1.setText(str);
 	l1.setFont(new Font("Times New Roman",Font.BOLD,25));
-	l1.setForeground(new Color(53,0,102));
+	l1.setForeground(new Color(0,0,0));
 	l1.setBounds(75,100,1000,40);
 	try{
         Font font = Font.createFont(Font.TRUETYPE_FONT, Login.class.getResourceAsStream("Rene Bieder  Milliard Light.otf"));
@@ -114,7 +114,7 @@ public void Company_display(String str) throws ClassNotFoundException, SQLExcept
 	p0.add(l2);
 	JLabel l3 = new JLabel("Associated Companies");
 	l3.setFont(new Font("Times New Roman",Font.BOLD,25));
-	l3.setForeground(new Color(53,0,102));
+	l3.setForeground(new Color(0,0,0));
 	l3.setBounds(490,165,1000,40);
 	try{
         Font font = Font.createFont(Font.TRUETYPE_FONT, Login.class.getResourceAsStream("Rene Bieder  Milliard Light.otf"));
@@ -130,18 +130,18 @@ public void Company_display(String str) throws ClassNotFoundException, SQLExcept
 	JLabel medl = new JLabel("Stock");
 	medl.setBounds(125,170,100,25);
 	medl.setFont(new Font("",Font.PLAIN,20));
-	medl.setForeground(new Color(53,0,102));
+	medl.setForeground(new Color(0,0,0));
 	p1.add(medl);
 	JButton hom = new JButton(homelogo);
 	hom.setBounds(245,10,160,160);
 	p1.add(hom);
-        JLabel aplog = new JLabel("",app_logo,JLabel.CENTER);
+    JLabel aplog = new JLabel("",app_logo,JLabel.CENTER);
 	aplog.setBounds(750,50,200,100);
 	p0.add(aplog);
 	JLabel cmpl = new JLabel("Home");
 	cmpl.setBounds(283,170,100,25);
 	cmpl.setFont(new Font("",Font.PLAIN,20));
-	cmpl.setForeground(new Color(53,0,102));
+	cmpl.setForeground(new Color(0,0,0));
 	p1.add(cmpl);
 	JButton cst = new JButton(cstlogo);
 	cst.setBounds(70,210,160,160);
@@ -149,12 +149,12 @@ public void Company_display(String str) throws ClassNotFoundException, SQLExcept
 	JLabel cstl1 = new JLabel("Customer");
 	cstl1.setBounds(100,370,100,25);
 	cstl1.setFont(new Font("",Font.PLAIN,20));
-	cstl1.setForeground(new Color(53,0,102));
+	cstl1.setForeground(new Color(0,0,0));
 	p1.add(cstl1);
 	JLabel cstl2 = new JLabel("History");
 	cstl2.setBounds(110,390,100,25);
 	cstl2.setFont(new Font("",Font.PLAIN,20));
-	cstl2.setForeground(new Color(53,0,102));
+	cstl2.setForeground(new Color(0,0,0));
 	p1.add(cstl2);
 	JButton trns = new JButton(trnslogo);
 	trns.setBounds(245,210,160,160);
@@ -162,7 +162,7 @@ public void Company_display(String str) throws ClassNotFoundException, SQLExcept
 	JLabel trnsl = new JLabel("Transactions");
 	trnsl.setBounds(265,370,150,25);
 	trnsl.setFont(new Font("",Font.PLAIN,20));
-	trnsl.setForeground(new Color(53,0,102));
+	trnsl.setForeground(new Color(0,0,0));
 	p1.add(trnsl);
 	JButton new_c= new JButton("Add Company");
 	new_c.setBounds(590, 210, 180, 35);
@@ -196,7 +196,7 @@ public void Company_display(String str) throws ClassNotFoundException, SQLExcept
     }
     catch(Exception e){}
 	l4.setBounds(15,5,150,40);
-	l4.setForeground(new Color(53,0,102));
+	l4.setForeground(new Color(0,0,0));
 	p2.add(l4);
 	JLabel l5 = new JLabel("Name: "+str);
 	try{
@@ -205,7 +205,7 @@ public void Company_display(String str) throws ClassNotFoundException, SQLExcept
     }
     catch(Exception e){}
 	l5.setBounds(15,60,345,40);
-	l5.setForeground(new Color(53,0,102));
+	l5.setForeground(new Color(0,0,0));
 	p2.add(l5);
 	JLabel l6 = new JLabel("ID: "+result.getString("ID"));
 	try{
@@ -214,7 +214,7 @@ public void Company_display(String str) throws ClassNotFoundException, SQLExcept
     }
     catch(Exception e){}
 	l6.setBounds(15,90,345,40);
-	l6.setForeground(new Color(53,0,102));
+	l6.setForeground(new Color(0,0,0));
 	p2.add(l6);
 	JLabel l7 = new JLabel("Date of Joining: "+result.getString("Date_of_Joining"));
 	try{
@@ -223,7 +223,7 @@ public void Company_display(String str) throws ClassNotFoundException, SQLExcept
     }
     catch(Exception e){}
 	l7.setBounds(15,120,345,40);
-	l7.setForeground(new Color(53,0,102));
+	l7.setForeground(new Color(0,0,0));
 	p2.add(l7);
 	JLabel l8 = new JLabel("Salary: "+result.getString("Salary"));
 	try{
@@ -232,7 +232,7 @@ public void Company_display(String str) throws ClassNotFoundException, SQLExcept
     }
     catch(Exception e){}
 	l8.setBounds(15,150,345,40);
-	l8.setForeground(new Color(53,0,102));
+	l8.setForeground(new Color(0,0,0));
 	p2.add(l8);
 	
 	
@@ -245,7 +245,7 @@ public void Company_display(String str) throws ClassNotFoundException, SQLExcept
 	lgint.setColumnIdentifiers(columns);
 	lgin.setModel(lgint);
 	JScrollPane sp = new JScrollPane(lgin);
-	sp.setBounds(0,30,1040,220);
+	sp.setBounds(0,40,1040,220);
 	p3.add(sp);
 	Object[] row = new Object[4];
 	
@@ -350,16 +350,16 @@ public void Company_display(String str) throws ClassNotFoundException, SQLExcept
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					if((dctf.getText().toString().length()==0))
+					if((dctf.getText().toString().trim().length()==0))
 					checkname.setVisible(true);
-					else if ((dctf1.getText().toString().length()!=10)){
+					else if ((dctf1.getText().toString().trim().length()!=10)){
 					 checknumber.setVisible(true);
 					}
 					else {
 						try {
 							String a,a1;
-							a=dctf.getText().toString();
-							a1=dctf1.getText().toString();
+							a=dctf.getText().toString().trim();
+							a1=dctf1.getText().toString().trim();
 							  String query = "delete from company_contact where Company=? and Contact_no=?";
 								      PreparedStatement preparedStmt = connection.prepareStatement(query);
 								      preparedStmt.setString (1, a);
@@ -486,16 +486,16 @@ public void Company_display(String str) throws ClassNotFoundException, SQLExcept
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					if((actf.getText().toString().length()==0))
+					if((actf.getText().toString().trim().length()==0))
 					checkname.setVisible(true);
-					else if ((actf1.getText().toString().length()!=10)){
+					else if ((actf1.getText().toString().trim().length()!=10)){
 					 checknumber.setVisible(true);
 					}
 					else {
 					try {
 						String a,a1;
-						a=actf.getText().toString();
-						a1=actf1.getText().toString();
+						a=actf.getText().toString().trim();
+						a1=actf1.getText().toString().trim();
 						//int number= Integer.parseInt(a1);
 						 String query = " insert into company_contact (Company,Contact_no)"
 							        + " values (?, ?)";
@@ -600,23 +600,23 @@ public void Company_display(String str) throws ClassNotFoundException, SQLExcept
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					if((ucdt.getText().toString().length()==0))
+					if((ucdt.getText().toString().trim().length()==0))
 					checkname.setVisible(true);
 					else {
 					try {
 						String a,a1;
-						a=ucdt.getText().toString();
-						a1=ucdt1.getText().toString();
+						a=ucdt.getText().toString().trim();
+						a1=ucdt1.getText().toString().trim();
 						if(!a1.equals("")) {
 						query = "update Company set State = '"+a1+"' where Name = '"+a+"';";
 						statement.execute(query);
 						}
-						a1=ucdt2.getText().toString();
+						a1=ucdt2.getText().toString().trim();
 						if(!a1.equals("")) {
 						query = "update Company set City = '"+a1+"' where Name = '"+a+"';";
 						statement.execute(query);
 						}
-						a1=ucdt3.getText().toString();
+						a1=ucdt3.getText().toString().trim();
 						if(!a1.equals("")) {
 						int pin =Integer.parseInt(a1);
 						query = "update Company set Pin = '"+a1+"' where Name = '"+a+"';";
@@ -690,12 +690,12 @@ public void Company_display(String str) throws ClassNotFoundException, SQLExcept
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					if((rctf.getText().toString().length()==0))
+					if((rctf.getText().toString().trim().length()==0))
 					checkname.setVisible(true);
 					else {
 					try {
 						String a;
-						a=rctf.getText().toString();
+						a=rctf.getText().toString().trim();
 						  String query = "delete from company where name=?";
 							      PreparedStatement preparedStmt = connection.prepareStatement(query);
 							      preparedStmt.setString (1, a);
@@ -803,20 +803,20 @@ public void Company_display(String str) throws ClassNotFoundException, SQLExcept
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					if((nctf.getText().toString().length()==0))
+					if((nctf.getText().toString().trim().length()==0))
 					checkname.setVisible(true);
 					else {
 					try {
 						String a,a1,a2,a3;
 						int pincode;
-						a=nctf.getText().toString();
-						a1=nctf1.getText().toString();
+						a=nctf.getText().toString().trim();
+						a1=nctf1.getText().toString().trim();
 						if(a1.equals(""))
 						a1=" ";
-						a2=nctf2.getText().toString();
+						a2=nctf2.getText().toString().trim();
 						if(a2.equals(""))
 						a2=" ";
-						a3=nctf3.getText().toString();
+						a3=nctf3.getText().toString().trim();
 						if(a3.equals(""))
 						a3="0";
 						pincode=Integer.parseInt(a3);
