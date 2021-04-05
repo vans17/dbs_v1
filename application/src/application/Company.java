@@ -111,6 +111,7 @@ public void Company_display(String str) throws ClassNotFoundException, SQLExcept
         l2.setFont(font.deriveFont(Font.ITALIC, 25f));
     }
     catch(Exception e){}
+	
 	p0.add(l2);
 	JLabel l3 = new JLabel("Associated Companies");
 	l3.setFont(new Font("Times New Roman",Font.BOLD,25));
