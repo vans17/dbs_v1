@@ -94,8 +94,8 @@ public class Login
 				msg3.setVisible(false);
 				msg4.setVisible(false);
 				
-				String s = pswrd.getText().toString();
-				String t = tf.getText().toString();
+				String s = pswrd.getText().toString().trim();
+				String t = tf.getText().toString().trim();
 				if((s.length()==0||t.length()==0)&&!t.equals("0"))
 				msg2.setVisible(true);
 				else
