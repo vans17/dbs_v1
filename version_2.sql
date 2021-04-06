@@ -160,7 +160,7 @@ DROP TABLE IF EXISTS `employee_contact`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `employee_contact` (
-  `Contact_no` int NOT NULL,
+  `Contact_no` bigint NOT NULL,
   `ID` int NOT NULL,
   PRIMARY KEY (`Contact_no`,`ID`),
   KEY `eid_fk_idx` (`ID`),
@@ -174,6 +174,7 @@ CREATE TABLE `employee_contact` (
 
 LOCK TABLES `employee_contact` WRITE;
 /*!40000 ALTER TABLE `employee_contact` DISABLE KEYS */;
+INSERT INTO `employee_contact` VALUES (2160947810,0),(9769213816,0),(8779617377,9),(8879821241,9);
 /*!40000 ALTER TABLE `employee_contact` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -201,7 +202,7 @@ CREATE TABLE `login` (
 
 LOCK TABLES `login` WRITE;
 /*!40000 ALTER TABLE `login` DISABLE KEYS */;
-INSERT INTO `login` VALUES (0,'02:44:47','2021-04-03','','admin'),(0,'02:48:19','2021-04-03','','admin'),(0,'02:49:36','2021-04-03','','admin'),(0,'02:50:47','2021-04-03','','admin'),(0,'02:53:33','2021-04-03','','admin'),(0,'02:57:11','2021-04-03','','admin'),(0,'03:13:55','2021-04-03','','admin'),(0,'03:14:43','2021-04-03','','admin'),(0,'03:25:16','2021-04-03','','admin'),(0,'11:03:24','2021-04-03','','admin'),(0,'12:21:15','2021-04-05','','admin'),(0,'12:31:20','2021-04-03','','admin'),(0,'12:34:06','2021-04-03','','admin'),(0,'12:51:56','2021-04-03','','admin'),(0,'12:52:11','2021-04-03','','admin'),(0,'12:52:16','2021-04-03','','admin'),(0,'17:37:12','2021-04-03','','admin'),(9,'02:43:55','2021-04-03','rootpassword','Ashwin Avinash Wadatkar'),(9,'03:20:09','2021-04-03','rootpassword','Ashwin Avinash Wadatkar'),(9,'11:02:54','2021-04-03','rootpassword','Ashwin Avinash Wadatkar'),(9,'11:03:59','2021-04-03','rootpassword','Ashwin Avinash Wadatkar'),(9,'11:32:15','2021-04-05','rootpassword','Ashwin Avinash Wadatkar'),(9,'12:31:45','2021-04-03','rootpassword','Ashwin Avinash Wadatkar'),(9,'12:34:45','2021-04-03','rootpassword','Ashwin Avinash Wadatkar'),(9,'12:50:30','2021-04-03','rootpassword','Ashwin Avinash Wadatkar'),(9,'12:50:56','2021-04-03','rootpassword','Niwhsa'),(9,'12:51:39','2021-04-03','rootpassword','Ashwin Avinash Wadatkar'),(9,'12:52:35','2021-04-03','rootpassword','Ashwin Avinash Wadatkar');
+INSERT INTO `login` VALUES (0,'02:44:47','2021-04-03','','admin'),(0,'02:48:19','2021-04-03','','admin'),(0,'02:49:36','2021-04-03','','admin'),(0,'02:50:47','2021-04-03','','admin'),(0,'02:53:33','2021-04-03','','admin'),(0,'02:57:11','2021-04-03','','admin'),(0,'03:13:55','2021-04-03','','admin'),(0,'03:14:43','2021-04-03','','admin'),(0,'03:25:16','2021-04-03','','admin'),(0,'11:03:24','2021-04-03','','admin'),(0,'12:21:15','2021-04-05','','admin'),(0,'12:31:20','2021-04-03','','admin'),(0,'12:34:06','2021-04-03','','admin'),(0,'12:51:56','2021-04-03','','admin'),(0,'12:52:11','2021-04-03','','admin'),(0,'12:52:16','2021-04-03','','admin'),(0,'17:37:12','2021-04-03','','admin'),(0,'19:08:34','2021-04-05','','admin'),(0,'19:37:23','2021-04-05','','admin'),(0,'19:41:58','2021-04-05','','admin'),(0,'20:14:29','2021-04-05','','admin'),(9,'02:43:55','2021-04-03','rootpassword','Ashwin Avinash Wadatkar'),(9,'03:20:09','2021-04-03','rootpassword','Ashwin Avinash Wadatkar'),(9,'11:02:54','2021-04-03','rootpassword','Ashwin Avinash Wadatkar'),(9,'11:03:59','2021-04-03','rootpassword','Ashwin Avinash Wadatkar'),(9,'11:32:15','2021-04-05','rootpassword','Ashwin Avinash Wadatkar'),(9,'12:31:45','2021-04-03','rootpassword','Ashwin Avinash Wadatkar'),(9,'12:34:45','2021-04-03','rootpassword','Ashwin Avinash Wadatkar'),(9,'12:50:30','2021-04-03','rootpassword','Ashwin Avinash Wadatkar'),(9,'12:50:56','2021-04-03','rootpassword','Niwhsa'),(9,'12:51:39','2021-04-03','rootpassword','Ashwin Avinash Wadatkar'),(9,'12:52:35','2021-04-03','rootpassword','Ashwin Avinash Wadatkar'),(9,'19:07:14','2021-04-05','rootpassword','Ashwin Avinash Wadatkar'),(9,'19:07:36','2021-04-05','rootpassword','Ashwin Avinash Wadatkar'),(9,'19:08:19','2021-04-05','rootpassword','Ashwin Avinash Wadatkar'),(9,'19:09:50','2021-04-05','rootpassword','Ashwin Avinash Wadatkar'),(9,'19:36:29','2021-04-05','rootpassword','Ashwin Avinash Wadatkar'),(9,'19:37:08','2021-04-05','rootpassword','Ashwin Avinash Wadatkar'),(9,'19:41:02','2021-04-05','rootpassword','Ashwin Avinash Wadatkar'),(9,'19:42:26','2021-04-05','rootpassword','Ashwin Avinash Wadatkar'),(9,'19:47:03','2021-04-05','rootpassword','Ashwin Avinash Wadatkar');
 /*!40000 ALTER TABLE `login` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -234,7 +235,7 @@ CREATE TABLE `medicine` (
 
 LOCK TABLES `medicine` WRITE;
 /*!40000 ALTER TABLE `medicine` DISABLE KEYS */;
-INSERT INTO `medicine` VALUES ('Paramol',20,'analgesic','Cipla',90,'2021-05-23','2022-05-23',30,180),('Ondem',21,'anti-pyretic','Ranbaxy',80,'2021-03-04','2022-04-04',30,150),('Pan-40',22,'anti-acidity','Meds co.',80,'2021-03-04','2022-04-04',30,150),('Dusting Powder',24,'anti-fungal','Candid',95,'2020-08-20','2022-08-20',25,195),('Imidazole',25,'analgesic','Cipla',25,'2020-05-20','2021-05-20',75,4),('lalalala',27,'lalalala','Cipla',24,'0000-00-00','0000-00-00',29,34);
+INSERT INTO `medicine` VALUES ('Ondem',21,'anti-pyretic','Ranbaxy',80,'2021-03-04','2022-04-04',30,150),('Pan-40',22,'anti-acidity','Meds co.',80,'2021-03-04','2022-04-04',30,150),('Dusting Powder',24,'anti-fungal','Candid',95,'2020-08-20','2022-08-20',25,195),('Imidazole',25,'analgesic','Cipla',25,'2020-05-20','2021-05-20',75,4);
 /*!40000 ALTER TABLE `medicine` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -317,4 +318,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-04-05 15:45:45
+-- Dump completed on 2021-04-05 20:18:06

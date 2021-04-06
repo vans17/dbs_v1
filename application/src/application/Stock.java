@@ -468,6 +468,13 @@ public class Stock {
 						f.hide();
 						try {
 							new Main().main(null);
+							query = "drop table if exists cart"+strg+";";
+							try {
+								statement.execute(query);
+							} catch (SQLException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
 						} catch (InstantiationException | IllegalAccessException | ClassNotFoundException
 								| SQLException e1) {
 							// TODO Auto-generated catch block
@@ -475,13 +482,6 @@ public class Stock {
 						}
 					}
 				});
-				query = "drop table if exists cart;";
-				try {
-					statement.execute(query);
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
 				lgt.setLayout(null);
 				lgt.setVisible(true);
 				lgt.setResizable(false);
@@ -562,7 +562,7 @@ public class Stock {
 			public void actionPerformed(ActionEvent e)
 			{
 				try {
-					new Cart().show_cart();
+					new Cart().show_cart(strg);
 				} catch (ClassNotFoundException | SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -575,7 +575,7 @@ public class Stock {
 			{
 				Stock c = new Stock();
 				try {
-					new Cart().add_to_Cart(c.extract_Company(cbmed.getSelectedItem().toString().trim()),c.extract_ID(cbmed.getSelectedItem().toString().trim()));
+					new Cart().add_to_Cart(c.extract_Company(cbmed.getSelectedItem().toString().trim()),c.extract_ID(cbmed.getSelectedItem().toString().trim()),strg);
 				} catch (ClassNotFoundException | SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

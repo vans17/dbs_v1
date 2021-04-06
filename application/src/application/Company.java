@@ -22,7 +22,7 @@ ImageIcon app_logo = new ImageIcon(getClass().getResource("app_logo.png"));
 
 static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 static final String NAME = "root";
-static final String PASSWORD = "Sharvani17#";
+static final String PASSWORD = "rootpassword";
 static final String URL = "jdbc:mysql://localhost:3306/dbs_v1";
 static Connection connection;
 static String query;
@@ -895,16 +895,15 @@ public void Company_display(String str) throws ClassNotFoundException, SQLExcept
 					f.hide();
 					try {
 						new Main().main(null);
-					} catch (InstantiationException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					} catch (IllegalAccessException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					} catch (ClassNotFoundException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					} catch (SQLException e1) {
+						query = "drop table if exists cart"+strg+";";
+						try {
+							statement.execute(query);
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					} catch (InstantiationException | IllegalAccessException | ClassNotFoundException
+							| SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
