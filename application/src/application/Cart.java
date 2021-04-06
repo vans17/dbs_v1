@@ -108,7 +108,7 @@ public class Cart {
 		if(result.next())
 		{
 			jl.setVisible(false);
-			query = "select * from cart"+strg+";";
+			query = "select * from cart"+str+";";
 			result = statement.executeQuery(query);
 			while(result.next())
 			{

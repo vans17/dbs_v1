@@ -895,13 +895,6 @@ public void Company_display(String str) throws ClassNotFoundException, SQLExcept
 					f.hide();
 					try {
 						new Main().main(null);
-						query = "drop table if exists cart"+strg+";";
-						try {
-							statement.execute(query);
-						} catch (SQLException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
 					} catch (InstantiationException | IllegalAccessException | ClassNotFoundException
 							| SQLException e1) {
 						// TODO Auto-generated catch block
