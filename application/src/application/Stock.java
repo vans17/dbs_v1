@@ -17,6 +17,7 @@ public class Stock {
 	ImageIcon panelbg1 = new ImageIcon(getClass().getResource("cart_bg.jpg"));
 	ImageIcon app_logo = new ImageIcon(getClass().getResource("app_logo.png"));
 	ImageIcon white_bg = new ImageIcon(getClass().getResource("white_bg.jpg"));
+	ImageIcon warning = new ImageIcon(getClass().getResource("warning.png"));
 			
 	static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 	static final String NAME = "root";
@@ -74,6 +75,21 @@ public class Stock {
 			g.insert(i,str.charAt(i));
 		}
 		//System.out.println(g);
+		return g.toString().trim();
+	}
+	
+	public String extract_Date(String str)
+	{
+		StringBuffer g = new StringBuffer(8);
+		int i,j=0;
+		for(i=0;i<str.length();i++)
+		{
+			if(str.charAt(i)!='-')
+			{
+				g.insert(j,str.charAt(i));
+				j++;
+			}
+		}
 		return g.toString().trim();
 	}
 	
@@ -433,6 +449,12 @@ public class Stock {
 		updt_med.setBounds(1200,375,200,50);
 		updt_med.setFont(new Font("",Font.BOLD,16));
 		bg.add(updt_med);
+		JLabel expmsg = new JLabel("*This product has expired");
+		expmsg.setBounds(380,190,200,30);
+		expmsg.setFont(new Font("Times New Roman",Font.PLAIN,18));
+		expmsg.setForeground(Color.red);
+		expmsg.setVisible(false);
+		panelbg.add(expmsg);
 		JButton ret = new JButton("Logout");
 		ret.setFont(new Font("",Font.BOLD,16));
 		ret.setBounds(300, 665, 100, 50);
@@ -497,6 +519,8 @@ public class Stock {
 		{
 			public void actionPerformed(ActionEvent e)
 			{
+				expmsg.setVisible(false);
+				String dt="",expdate="";
 				Stock b = new Stock();
 				String idmed1 = b.extract_ID(cbmed.getSelectedItem().toString().trim());
 				query = "select * from medicine where Batch_no = '"+idmed1+"';";
@@ -513,10 +537,37 @@ public class Stock {
 						mrpmedt.setText("Rs. "+result.getString("MRP"));
 						cosmedt.setText("Rs. "+result.getString("Cost"));
 						qtymedt.setText(result.getString("Quantity")+" units");
+						expdate = result.getString("D_O_E");
 					}
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
+				}
+				query = "select curdate();";
+				try {
+					result = statement.executeQuery(query);
+					if(result.next())
+					dt=result.getString("curdate()");
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				int dt1,expdt1;
+				dt1 = Integer.parseInt(b.extract_Date(dt));
+				expdt1 = Integer.parseInt(b.extract_Date(expdate));
+				if(dt1>expdt1)
+				{
+					DOEed.setForeground(Color.red);
+					DOEedt.setForeground(Color.red);
+					nmed.setForeground(Color.red);
+					expmsg.setVisible(true);
+				}
+				else
+				{
+					DOEed.setForeground(null);
+					DOEedt.setForeground(null);
+					nmed.setForeground(null);
+					expmsg.setVisible(false);
 				}
 				nmed.setVisible(true);
 				cmpmed.setVisible(true);
@@ -567,11 +618,51 @@ public class Stock {
 			public void actionPerformed(ActionEvent e)
 			{
 				Stock c = new Stock();
+				String dt="",expdate="";
+				String idmed1 = c.extract_ID(cbmed.getSelectedItem().toString().trim());
+				query = "select * from medicine where Batch_no = '"+idmed1+"';";
 				try {
-					new Cart().add_to_Cart(c.extract_Company(cbmed.getSelectedItem().toString().trim()),c.extract_ID(cbmed.getSelectedItem().toString().trim()),strg);
-				} catch (ClassNotFoundException | SQLException e1) {
+					result = statement.executeQuery(query);
+					if(result.next())
+					expdate = result.getString("D_O_E");
+				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
+				}
+				query = "select curdate();";
+				try {
+					result = statement.executeQuery(query);
+					if(result.next())
+					dt=result.getString("curdate()");
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				int dt1,expdt1;
+				dt1 = Integer.parseInt(c.extract_Date(dt));
+				expdt1 = Integer.parseInt(c.extract_Date(expdate));
+				if(dt1>expdt1)
+				{
+					JFrame exper = new JFrame("Error");
+					exper.setBounds(600,400,355,100);
+					exper.setIconImage(warning.getImage());
+					exper.getContentPane().setBackground(Color.white);
+					JLabel emsg = new JLabel();
+					emsg.setText("This product has expired and cannot be added to cart!");
+					emsg.setFont(new Font("Times New Roman",Font.PLAIN,16));
+					exper.add(emsg);
+					exper.setVisible(true);
+					exper.setLayout(null);
+					exper.setResizable(false);
+				}
+				else
+				{
+					try {
+						new Cart().add_to_Cart(c.extract_Company(cbmed.getSelectedItem().toString().trim()),c.extract_ID(cbmed.getSelectedItem().toString().trim()),strg);
+					} catch (ClassNotFoundException | SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
 			}
 		});
