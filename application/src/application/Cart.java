@@ -21,16 +21,16 @@ public class Cart {
 	static ResultSet result;
 	static String strg;
 	static String pswrd;
-	//dfjhngjndfjgn
 	
-	public void add_to_Cart(String cmpname,String btchno) throws ClassNotFoundException, SQLException
+	public void add_to_Cart(String cmpname,String btchno,String str) throws ClassNotFoundException, SQLException
 	{
+		strg=str;
 		Class.forName(DRIVER);
 		connection = DriverManager.getConnection(URL,NAME,PASSWORD);
 		statement = connection.createStatement();
-		query = "create table if not exists cart (name varchar(45) ,quantity int,mrp int, primary key(name,mrp));";
+		query = "create table if not exists cart"+strg+" (name varchar(45) ,quantity int,mrp int, primary key(name,mrp));";
 		statement.execute(query);
-		query = "select * from medicine where Batch_no='"+btchno+"' and company='"+cmpname+"';";
+		query = "select * from medicine where Batch_no="+btchno+";";
 		result = statement.executeQuery(query);
 		String name="",mrp="";
 		if(result.next())
@@ -38,7 +38,7 @@ public class Cart {
 			name = result.getString("Name");
 			mrp = result.getString("MRP");
 		}
-		query = "select * from cart where name = '"+name+"' and mrp = "+mrp+";";
+		query = "select * from cart"+strg+" where name = '"+name+"' and mrp = "+mrp+";";
 		result = statement.executeQuery(query);
 		if(result.next())
 		{
@@ -46,21 +46,21 @@ public class Cart {
 			as = result.getString("name");
 			df = result.getString("mrp");
 			int abcd=1;
-			query = "select quantity from cart where name = '"+as+"' and mrp ="+df+";";
+			query = "select quantity from cart"+strg+" where name = '"+as+"' and mrp ="+df+";";
 			result = statement.executeQuery(query);
 			if(result.next())
 			abcd = result.getInt("quantity");
 			++abcd;
-			query = "update cart set quantity = "+abcd+" where name = '"+as+"' and mrp = "+df+";";
+			query = "update cart"+strg+" set quantity = "+abcd+" where name = '"+as+"' and mrp = "+df+";";
 		}
 		else
 		{
-			query = "insert into cart values('"+name+"',1,"+mrp+");";
+			query = "insert into cart"+strg+" values('"+name+"',1,"+mrp+");";
 		}
 		statement.execute(query);
 	}
 	
-	public void show_cart() throws ClassNotFoundException, SQLException
+	public void show_cart(String str) throws ClassNotFoundException, SQLException
 	{
 		Object[] columns = {"Name","Quantity","MRP"};
 		JFrame f = new JFrame("Cart");
@@ -103,12 +103,12 @@ public class Cart {
 		Class.forName(DRIVER);
 		connection = DriverManager.getConnection(URL,NAME,PASSWORD);
 		statement = connection.createStatement();
-		query = "select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'cart';";
+		query = "select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'cart"+str+"';";
 		result = statement.executeQuery(query);
 		if(result.next())
 		{
 			jl.setVisible(false);
-			query = "select * from cart;";
+			query = "select * from cart"+str+";";
 			result = statement.executeQuery(query);
 			while(result.next())
 			{
@@ -134,7 +134,7 @@ public class Cart {
 			{
 				Cart a = new Cart();
 				try {
-					a.checkout();
+					a.checkout(str);
 				} catch (ClassNotFoundException | SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -154,7 +154,7 @@ public class Cart {
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				query = "drop table if exists cart;";
+				query = "drop table if exists cart"+str+";";
 				try {
 					statement.execute(query);
 				} catch (SQLException e1) {
@@ -179,10 +179,10 @@ public class Cart {
 				if(i>=0)
 				{
 					String name1,quantity1,mrp1;
-					name1 = medt1.getValueAt(i, 0).toString();
-					mrp1 = medt1.getValueAt(i, 2).toString();
+					name1 = medt1.getValueAt(i, 0).toString().trim();
+					mrp1 = medt1.getValueAt(i, 2).toString().trim();
 					medt1.removeRow(i);
-					query = "delete from cart where name = '"+name1+"' and mrp = "+mrp1+";";
+					query = "delete from cart"+str+" where name = '"+name1+"' and mrp = "+mrp1+";";
 					try {
 						statement.execute(query);
 					} catch (SQLException e1) {
@@ -199,14 +199,14 @@ public class Cart {
 				int i = medt.getSelectedRow();
 				if(i>=0)
 				{
-					int a = Integer.parseInt(medt1.getValueAt(i, 1).toString());
+					int a = Integer.parseInt(medt1.getValueAt(i, 1).toString().trim());
 					++a;
 					medt1.setValueAt(a, i, 1);
 					String name1,quantity1,mrp1;
-					name1 = medt1.getValueAt(i, 0).toString();
-					quantity1 = medt1.getValueAt(i, 1).toString();
-					mrp1 = medt1.getValueAt(i, 2).toString();
-					query = "update cart set quantity = "+quantity1+" where name = '"+name1+"' and mrp = "+mrp1+";";
+					name1 = medt1.getValueAt(i, 0).toString().trim();
+					quantity1 = medt1.getValueAt(i, 1).toString().trim();
+					mrp1 = medt1.getValueAt(i, 2).toString().trim();
+					query = "update cart"+str+" set quantity = "+quantity1+" where name = '"+name1+"' and mrp = "+mrp1+";";
 					try {
 						statement.execute(query);
 					} catch (SQLException e1) {
@@ -223,16 +223,16 @@ public class Cart {
 				int i = medt.getSelectedRow();
 				if(i>=0)
 				{
-					int a = Integer.parseInt(medt1.getValueAt(i, 1).toString());
+					int a = Integer.parseInt(medt1.getValueAt(i, 1).toString().trim());
 					if(a>1)
 					{
 						--a;
 						medt1.setValueAt(a, i, 1);
 						String name1,quantity1,mrp1;
-						name1 = medt1.getValueAt(i, 0).toString();
-						quantity1 = medt1.getValueAt(i, 1).toString();
-						mrp1 = medt1.getValueAt(i, 2).toString();
-						query = "update cart set quantity = "+quantity1+" where name = '"+name1+"' and mrp = "+mrp1+";";
+						name1 = medt1.getValueAt(i, 0).toString().trim();
+						quantity1 = medt1.getValueAt(i, 1).toString().trim();
+						mrp1 = medt1.getValueAt(i, 2).toString().trim();
+						query = "update cart"+str+" set quantity = "+quantity1+" where name = '"+name1+"' and mrp = "+mrp1+";";
 						try {
 							statement.execute(query);
 						} catch (SQLException e1) {
@@ -243,10 +243,10 @@ public class Cart {
 					else
 					{
 						String name1,quantity1,mrp1;
-						name1 = medt1.getValueAt(i, 0).toString();
-						quantity1 = medt1.getValueAt(i, 1).toString();
-						mrp1 = medt1.getValueAt(i, 2).toString();
-						query = "delete from cart where name = '"+name1+"' and mrp = "+mrp1+";";
+						name1 = medt1.getValueAt(i, 0).toString().trim();
+						quantity1 = medt1.getValueAt(i, 1).toString().trim();
+						mrp1 = medt1.getValueAt(i, 2).toString().trim();
+						query = "delete from cart"+str+" where name = '"+name1+"' and mrp = "+mrp1+";";
 						try {
 							statement.execute(query);
 						} catch (SQLException e1) {
@@ -264,12 +264,12 @@ public class Cart {
 		f.setResizable(false);
 	}
 	
-	public void checkout() throws ClassNotFoundException, SQLException
+	public void checkout(String str) throws ClassNotFoundException, SQLException
 	{
 		Class.forName(DRIVER);
 		connection = DriverManager.getConnection(URL,NAME,PASSWORD);
 		statement = connection.createStatement();
-		query = "drop table if exists cart;";
+		query = "drop table if exists cart"+str+";";
 		statement.execute(query);
 	}
 	
@@ -277,7 +277,7 @@ public class Cart {
 		// TODO Auto-generated method stub
 		
 		Cart a = new Cart();
-		a.show_cart();
+		a.show_cart(strg);
 	}
 
 }
