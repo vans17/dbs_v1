@@ -17,6 +17,7 @@ public class Stock {
 	ImageIcon panelbg1 = new ImageIcon(getClass().getResource("cart_bg.jpg"));
 	ImageIcon app_logo = new ImageIcon(getClass().getResource("app_logo.png"));
 	ImageIcon white_bg = new ImageIcon(getClass().getResource("white_bg.jpg"));
+	ImageIcon white_bg1 = new ImageIcon(getClass().getResource("white_bg1.jpg"));
 	ImageIcon warning = new ImageIcon(getClass().getResource("warning.png"));
 			
 	static final String DRIVER = "com.mysql.cj.jdbc.Driver";
@@ -85,6 +86,21 @@ public class Stock {
 		for(i=0;i<str.length();i++)
 		{
 			if(str.charAt(i)!='-')
+			{
+				g.insert(j,str.charAt(i));
+				j++;
+			}
+		}
+		return g.toString().trim();
+	}
+	
+	public String extract_Time(String str)
+	{
+		StringBuffer g = new StringBuffer(6);
+		int i,j=0;
+		for(i=0;i<str.length();i++)
+		{
+			if(str.charAt(i)!=':')
 			{
 				g.insert(j,str.charAt(i));
 				j++;
@@ -449,6 +465,10 @@ public class Stock {
 		updt_med.setBounds(1200,375,200,50);
 		updt_med.setFont(new Font("",Font.BOLD,16));
 		bg.add(updt_med);
+		JButton buy_med = new JButton("Buy from company");
+		buy_med.setBounds(1200,450,200,50);
+		buy_med.setFont(new Font("",Font.BOLD,16));
+		bg.add(buy_med);
 		JLabel expmsg = new JLabel("*This product has expired");
 		expmsg.setBounds(380,190,200,30);
 		expmsg.setFont(new Font("Times New Roman",Font.PLAIN,18));
@@ -673,7 +693,7 @@ public class Stock {
 				JFrame amed = new JFrame("Add New Medicine");
 				amed.setBounds(600,250,500,435);
 				amed.setIconImage(madc.getImage());
-				JLabel bg1 = new JLabel("",white_bg,JLabel.CENTER);
+				JLabel bg1 = new JLabel("",white_bg1,JLabel.CENTER);
 				bg1.setBounds(0, 0, 500, 435);
 				amed.add(bg1);
 				JLabel nn = new JLabel("Name: ");
@@ -868,11 +888,11 @@ public class Stock {
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				JFrame edmed = new JFrame("Add New Medicine");
+				JFrame edmed = new JFrame("Update Medicine Data");
 				edmed.setBounds(600,250,500,435);
 				edmed.setIconImage(madc.getImage());
-				JLabel bg1 = new JLabel("",white_bg,JLabel.CENTER);
-				bg1.setBounds(0, 0, 500, 385);
+				JLabel bg1 = new JLabel("",white_bg1,JLabel.CENTER);
+				bg1.setBounds(0, 0, 500, 435);
 				edmed.add(bg1);
 				JLabel nn1 = new JLabel("New name: ");
 				nn1.setBounds(50,20,300,30);
@@ -1064,6 +1084,250 @@ public class Stock {
 				edmed.setVisible(true);
 				edmed.setLayout(null);
 				edmed.setResizable(false);
+			}
+		});
+		buy_med.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				JFrame bymed = new JFrame("Buy From Company");
+				bymed.setBounds(600,250,500,435);
+				bymed.setIconImage(madc.getImage());
+				JLabel bg2 = new JLabel("",white_bg1,JLabel.CENTER);
+				bg2.setBounds(0, 0, 500, 435);
+				JLabel nn11 = new JLabel("Medicine name: ");
+				nn11.setBounds(50,20,300,30);
+				nn11.setFont(new Font("Times New Roman",Font.PLAIN,16));
+				bg2.add(nn11);
+				JLabel nbn11 = new JLabel("Batch no.: ");
+				nbn11.setBounds(50,50,300,30);
+				nbn11.setFont(new Font("Times New Roman",Font.PLAIN,16));
+				bg2.add(nbn11);
+				JLabel nt11 = new JLabel("Type: ");
+				nt11.setBounds(50,80,300,30);
+				nt11.setFont(new Font("Times New Roman",Font.PLAIN,16));
+				bg2.add(nt11);
+				JLabel nc11 = new JLabel("Company name: ");
+				nc11.setBounds(50,110,300,30);
+				nc11.setFont(new Font("Times New Roman",Font.PLAIN,16));
+				bg2.add(nc11);
+				JLabel ncst11 = new JLabel("Cost: ");
+				ncst11.setBounds(50,140,300,30);
+				ncst11.setFont(new Font("Times New Roman",Font.PLAIN,16));
+				bg2.add(ncst11);
+				JLabel ndom11 = new JLabel("D.O.M: ");
+				ndom11.setBounds(50,170,300,30);
+				ndom11.setFont(new Font("Times New Roman",Font.PLAIN,16));
+				bg2.add(ndom11);
+				JLabel ndoe11 = new JLabel("D.O.E: ");
+				ndoe11.setBounds(50,200,300,30);
+				ndoe11.setFont(new Font("Times New Roman",Font.PLAIN,16));
+				bg2.add(ndoe11);
+				JLabel nm11 = new JLabel("MRP: ");
+				nm11.setBounds(50,230,300,30);
+				nm11.setFont(new Font("Times New Roman",Font.PLAIN,16));
+				bg2.add(nm11);
+				JLabel nq11 = new JLabel("Quantity: ");
+				nq11.setBounds(50,260,300,30);
+				nq11.setFont(new Font("Times New Roman",Font.PLAIN,16));
+				bg2.add(nq11);
+				JTextField eda1 = new JTextField();
+				
+				eda1.setBounds(250,20,200,30);
+				eda1.setFont(new Font("Times New Roman",Font.PLAIN,16));
+				bg2.add(eda1);
+				JTextField edb1 = new JTextField();
+				edb1.setBounds(250,50,200,30);
+				
+				edb1.setFont(new Font("Times New Roman",Font.PLAIN,16));
+				bg2.add(edb1);
+				JTextField edc1 = new JTextField();
+				edc1.setBounds(250,80,200,30);
+			
+				edc1.setFont(new Font("Times New Roman",Font.PLAIN,16));
+				bg2.add(edc1);
+				JTextField edd1 = new JTextField();
+				edd1.setBounds(250,110,200,30);
+				
+				edd1.setFont(new Font("Times New Roman",Font.PLAIN,16));
+				bg2.add(edd1);
+				JTextField ede1 = new JTextField();
+				ede1.setBounds(250,140,200,30);
+				
+				ede1.setFont(new Font("Times New Roman",Font.PLAIN,16));
+				bg2.add(ede1);
+				JTextField edf1 = new JTextField();
+				edf1.setBounds(250,170,200,30);
+				
+				edf1.setFont(new Font("Times New Roman",Font.PLAIN,16));
+				bg2.add(edf1);
+				JTextField edg1 = new JTextField();
+				edg1.setBounds(250,200,200,30);
+				
+				edg1.setFont(new Font("Times New Roman",Font.PLAIN,16));
+				bg2.add(edg1);
+				JTextField edh1 = new JTextField();
+				edh1.setBounds(250,230,200,30);
+				
+				edh1.setFont(new Font("Times New Roman",Font.PLAIN,16));
+				bg2.add(edh1);
+				JTextField edi1 = new JTextField();
+				edi1.setBounds(250,260,200,30);
+			
+				edi1.setFont(new Font("Times New Roman",Font.PLAIN,16));
+				bg2.add(edi1);
+				JLabel msg11 = new JLabel("*Register the Company first");
+				msg11.setBounds(200,310,500,20);
+				msg11.setFont(new Font("Times New Roman",Font.PLAIN,16));
+				msg11.setForeground(Color.red);
+				msg11.setVisible(false);
+				bg2.add(msg11);
+				JLabel msg31 = new JLabel("*Invalid Batch no.");
+				msg31.setBounds(200,310,500,20);
+				msg31.setFont(new Font("Times New Roman",Font.PLAIN,16));
+				msg31.setForeground(Color.red);
+				msg31.setVisible(false);
+				bg2.add(msg31);
+				JButton save1 = new JButton("Buy");
+				save1.setFont(new Font("",Font.BOLD,13));
+				save1.setBounds(220, 350, 105, 35);
+				bg2.add(save1);
+				save1.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
+						msg11.setVisible(false);
+						msg31.setVisible(false);
+						query = "select * from company where Name = '"+edd1.getText().toString().trim()+"';";
+						try {
+							result = statement.executeQuery(query);
+							if(result.next())
+							{
+								String a;
+								a=edb1.getText().toString().trim();
+								if(a.length()==0)
+								msg31.setVisible(true);
+								else
+								{query = "select * from medicine where Batch_no="+edb1.getText().toString().trim()+";";
+								result = statement.executeQuery(query);
+								if(!result.next())
+								{
+									Stock c = new Stock();
+									String aa,ac,ae,af,ag,ah,ai;
+									aa=eda1.getText().toString().trim();
+									if(aa.length()==0)
+									aa=" ";
+									ac=edc1.getText().toString().trim();
+									if(ac.length()==0)
+									ac=" ";
+									ae=ede1.getText().toString().trim();
+									if(ae.length()==0)
+									ae="0";
+									af=edf1.getText().toString().trim();
+									if(af.length()==0)
+									af="0000-00-00";
+									ag=edg1.getText().toString().trim();
+									if(ag.length()==0)
+									ag="0000-00-00";
+									ah=edh1.getText().toString().trim();
+									if(ah.length()==0)
+									ah="0";
+									ai=edi1.getText().toString().trim();
+									if(ai.length()==0)
+									ai="0";
+									long amount = Integer.parseInt(ae)*Integer.parseInt(ai);
+									String cdt="00000000",ct="000000";
+									query = "select curdate();";
+									result = statement.executeQuery(query);
+									if(result.next())
+									cdt = c.extract_Date(result.getString("curdate()"));
+									query = "select curtime();";
+									result = statement.executeQuery(query);
+									if(result.next())
+									ct = c.extract_Time(result.getString("curtime()"));
+									query = "insert into medicine values('"+aa+"',"+edb1.getText().toString().trim()+",'"+ac+"','"+edd1.getText().toString().trim()+"',"+ae+",'"+af+"','"+ag+"',"+ai+","+ah+");";
+									statement.execute(query);
+									query = "insert into purchase_log values("+edb1.getText().toString().trim()+",curdate(),'"+cdt+ct+strg+"',"+amount+","+ai+","+strg+",'"+edd1.getText().toString().trim()+"');";
+									statement.execute(query);
+									bymed.hide();
+									f.hide();
+									try {
+										new Stock().show_stock("0");
+									} catch (ClassNotFoundException e1) {
+										// TODO Auto-generated catch block
+										e1.printStackTrace();
+									}
+								}
+								else
+								{
+									Stock c = new Stock();
+									a=ede1.getText().toString().trim();
+									if(a.length()==0)
+									a="0";
+									query = "update medicine set Cost = "+a+" where Batch_no = "+edb1.getText().toString().trim()+" ;";
+									statement.execute(query);
+									a=edf1.getText().toString().trim();
+									if(a.length()==0)
+									a="0000-00-00";
+									query = "update medicine set D_O_M = '"+a+"' where Batch_no = "+edb1.getText().toString().trim()+" ;";
+									statement.execute(query);
+									a=edg1.getText().toString().trim();
+									if(a.length()==0)
+									a="0000-00-00";
+									query = "update medicine set D_O_E = '"+a+"' where Batch_no = "+edb1.getText().toString().trim()+" ;";
+									statement.execute(query);
+									a=edi1.getText().toString().trim();
+									if(a.length()==0)
+									a="0";
+									query = "update medicine set Quantity = "+a+" where Batch_no = "+edb1.getText().toString().trim()+" ;";
+									statement.execute(query);
+									long amount = Integer.parseInt(ede1.getText().toString().trim())*Integer.parseInt(edi1.getText().toString().trim());
+									String cdt="00000000",ct="000000";
+									query = "select curdate();";
+									result = statement.executeQuery(query);
+									if(result.next())
+									cdt = c.extract_Date(result.getString("curdate()"));
+									query = "select curtime();";
+									result = statement.executeQuery(query);
+									if(result.next())
+									ct = c.extract_Time(result.getString("curtime()"));
+									query = "insert into purchase_log values("+edb1.getText().toString().trim()+",curdate(),'"+cdt+ct+strg+"',"+amount+","+edi1.getText().toString().trim()+","+strg+",'"+edd1.getText().toString().trim()+"');";
+									statement.execute(query);
+									bymed.hide();
+									f.hide();
+									try {
+										new Stock().show_stock("0");
+									} catch (ClassNotFoundException e1) {
+										// TODO Auto-generated catch block
+										e1.printStackTrace();
+									}
+								}
+							}}
+							else
+							{
+								msg11.setVisible(true);
+							}
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+				});
+				JButton cancel1 = new JButton("Cancel");
+				cancel1.setFont(new Font("",Font.BOLD,13));
+				cancel1.setBounds(360, 350, 105, 35);
+				bg2.add(cancel1);
+				cancel1.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
+						bymed.hide();
+					}
+				});
+				bymed.add(bg2);
+				bymed.setVisible(true);
+				bymed.setLayout(null);
+				bymed.setResizable(true);
 			}
 		});
 		f.setResizable(false);
