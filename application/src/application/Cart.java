@@ -291,7 +291,7 @@ public class Cart {
 							if(result.next())
 							trnsid+=a.extract_Time(result.getString("curtime()"));
 							trnsid+=w2;
-							String file = "C:\\Users\\Avinash\\Desktop\\"+w1+"_"+w2+"_Invoice.pdf";
+							String file = "src\\Invoices\\"+w1+"_"+w2+"_Invoice.pdf";
 							PdfWriter.getInstance(doc, new FileOutputStream(file));
 							doc.open();
 							PdfPCell cell = new PdfPCell();
@@ -301,7 +301,7 @@ public class Cart {
 							img.scaleToFit(150,90);
 							img.setAlignment(Image.ALIGN_CENTER);
 							doc.add(img);
-							BaseFont bs = BaseFont.createFont("D:\\Laptop\\DATA (D)\\DBS project\\dbs_v1\\application\\src\\Fonts\\Rene Bieder  Milliard Light.otf",BaseFont.WINANSI, true);
+							BaseFont bs = BaseFont.createFont("src\\Fonts\\Rene Bieder  Milliard Light.otf",BaseFont.WINANSI, true);
 							com.itextpdf.text.Font hdr = new com.itextpdf.text.Font(bs,16,com.itextpdf.text.Font.BOLD|com.itextpdf.text.Font.UNDERLINE);
 							com.itextpdf.text.Font fo1 = new com.itextpdf.text.Font(bs,10,com.itextpdf.text.Font.NORMAL);
 							PdfPTable t3 = new PdfPTable(1);
