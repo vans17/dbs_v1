@@ -76,12 +76,19 @@ public class Transaction{
 		p2.setVisible(true);
 		p1.add(p2);
 		JPanel p3 = new JPanel();
-		p3.setBounds(500,240,1080,620);
+		p3.setBounds(500,240,1000,250);
 		p3.setBorder(blackline);
 		//p3.setBackground(new Color(0,0,0,0));
 		p3.setLayout(null);
 		p3.setVisible(true);
 		bg.add(p3);
+		JPanel p4 = new JPanel();
+		p4.setBounds(500,580,1000,250);
+		p4.setBorder(blackline);
+		p4.setLayout(null);
+		p4.setVisible(true);
+		bg.add(p4);
+		
 		JLabel l0 = new JLabel();
 		l0.setText("Welcome,");
 		l0.setFont(new Font("Times New Roman",Font.BOLD,25));
@@ -137,7 +144,7 @@ public class Transaction{
 		JLabel l41 = new JLabel("Medicines Sold");
 		l41.setFont(new Font("Times New Roman",Font.BOLD,25));
 		l41.setForeground(new Color(53,0,102));
-		l41.setBounds(1060,175,1000,40);
+		l41.setBounds(500,520,1000,40);
 		try{
             Font font = Font.createFont(Font.TRUETYPE_FONT, Login.class.getResourceAsStream("Rene Bieder  Milliard Light.otf"));
             l41.setFont(font.deriveFont(Font.BOLD, 25f));
@@ -148,6 +155,7 @@ public class Transaction{
 		JButton med = new JButton(medc);
 		med.setBounds(70,10,160,160);
 		p1.add(med);
+		
 		JLabel medl = new JLabel("Stock");
 		medl.setBounds(125,170,100,25);
 		medl.setFont(new Font("",Font.PLAIN,20));
@@ -182,7 +190,7 @@ public class Transaction{
 			public void actionPerformed(ActionEvent e)
 			{
 				try {
-					new Home().home_display("0", 1);
+					new Home().home_display(strg, 1);
 					
 				}
 				catch(Exception er){
@@ -314,16 +322,16 @@ public class Transaction{
 				f.hide();
 			}
 		});
-		Object[] columns = {"Batch_no","Purchase_date","Transaction_ID","Amount","Quantity","Buyer_ID","Company"};
+		Object[] columns = {"Batch No","Purchase date","Transaction ID","Amount","Quantity","Buyer ID","Company"};
 		JTable lgin = new JTable();
-		lgin.setBounds(500,240,520,620);
+		lgin.setBounds(500,240,1000,250);
 		lgin.setRowHeight(25);
 		p3.add(lgin);
 		DefaultTableModel lgint = new DefaultTableModel();
 		lgint.setColumnIdentifiers(columns);
 		lgin.setModel(lgint);
 		JScrollPane sp = new JScrollPane(lgin);
-		sp.setBounds(0,0,540,620);
+		sp.setBounds(0,0,1000,250);
 		p3.add(sp);
 		Object[] row = new Object[7];
 		if(!strg.equals("0"))
@@ -334,7 +342,7 @@ public class Transaction{
 			{
 				row[0]=result.getString("Batch_no");
 				row[1]=result.getString("Purchase_date");
-				row[2]=result.getString("Transaction_ID");
+				row[2]=result.getString("Transcation_ID");
 				row[3]=result.getString("Amount");
 				row[4]=result.getString("Quantity");
 				row[5]=result.getString("Buyer_ID");
@@ -350,7 +358,7 @@ public class Transaction{
 			{
 				row[0]=result.getString("Batch_no");
 				row[1]=result.getString("Purchase_date");
-				row[2]=result.getString("Transaction_ID");
+				row[2]=result.getString("Transcation_ID");
 				row[3]=result.getString("Amount");
 				row[4]=result.getString("Quantity");
 				row[5]=result.getString("Buyer_ID");
@@ -358,17 +366,17 @@ public class Transaction{
 				lgint.addRow(row);
 			}
 		}
-		Object[] columns1 = {"Batch_no","Purchase_date","Transaction_ID","Amount","Quantity","Buyer_ID","Company"};
+		Object[] columns1 = {"Batch No.","Sale date","Transaction ID","Amount","Quantity","Seller ID","Buyer name"};
 		JTable lgin1 = new JTable();
-		lgin1.setBounds(1080,240,520,620);
+		lgin1.setBounds(500,550,1000,250);
 		lgin1.setRowHeight(25);
-		p3.add(lgin1);
+		p4.add(lgin1);
 		DefaultTableModel lgint1 = new DefaultTableModel();
 		lgint1.setColumnIdentifiers(columns1);
 		lgin1.setModel(lgint1);
 		JScrollPane sp1 = new JScrollPane(lgin1);
-		sp1.setBounds(560,0,520,620);
-		p3.add(sp1);
+		sp1.setBounds(0,0,1000,250);
+		p4.add(sp1);
 		Object[] row1 = new Object[7];
 		if(!strg.equals("0"))
 		{
