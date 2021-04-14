@@ -21,7 +21,7 @@ public class Transaction{
 	
 	static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 	static final String NAME = "root";
-	static final String PASSWORD = "Niveshine150";
+	static final String PASSWORD = "rootpassword";
 	static final String URL = "jdbc:mysql://localhost:3306/dbs_v1";
 	static Connection connection;
 	static String query;
@@ -164,6 +164,19 @@ public class Transaction{
 		JButton cmp = new JButton(cmplogo);
 		cmp.setBounds(245,10,160,160);
 		p1.add(cmp);
+		cmp.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				try {
+					new Company().Company_display(strg);
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				f.hide();
+			}
+		});
 		JLabel cmpl = new JLabel("Company");
 		cmpl.setBounds(283,170,100,25);
 		cmpl.setFont(new Font("",Font.PLAIN,20));
@@ -190,7 +203,7 @@ public class Transaction{
 			public void actionPerformed(ActionEvent e)
 			{
 				try {
-					new Home().home_display(strg, 1);
+					new Home().home_display(strg, 0);
 					
 				}
 				catch(Exception er){

@@ -22,7 +22,7 @@ ImageIcon app_logo = new ImageIcon(getClass().getResource("app_logo.png"));
 
 static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 static final String NAME = "root";
-static final String PASSWORD = "Niveshine150";
+static final String PASSWORD = "rootpassword";
 static final String URL = "jdbc:mysql://localhost:3306/dbs_v1";
 static Connection connection;
 static String query;
@@ -161,6 +161,18 @@ public void Company_display(String str) throws ClassNotFoundException, SQLExcept
 	JButton trns = new JButton(trnslogo);
 	trns.setBounds(245,210,160,160);
 	p1.add(trns);
+	trns.addActionListener(new ActionListener()
+	{
+		public void actionPerformed(ActionEvent e)
+		{
+			try {
+				new Transaction().transaction_display(strg, 1);
+				f.hide();
+			}
+			catch(Exception err) {}
+			
+		}
+	});
 	JLabel trnsl = new JLabel("Transactions");
 	trnsl.setBounds(265,370,150,25);
 	trnsl.setFont(new Font("",Font.PLAIN,20));

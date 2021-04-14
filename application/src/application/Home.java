@@ -22,7 +22,7 @@ public class Home {
 	
 	static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 	static final String NAME = "root";
-	static final String PASSWORD = "Niveshine150";
+	static final String PASSWORD = "rootpassword";
 	static final String URL = "jdbc:mysql://localhost:3306/dbs_v1";
 	static Connection connection;
 	static String query;
@@ -357,7 +357,7 @@ public class Home {
 			{
 				try {
 					new Transaction().transaction_display(strg, 1);
-					
+					f.hide();
 				}
 				catch(Exception err) {}
 				
