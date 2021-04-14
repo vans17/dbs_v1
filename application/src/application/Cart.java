@@ -39,7 +39,7 @@ public class Cart {
 	static final String PASSWORD = "Niveshine150";
 	static final String URL = "jdbc:mysql://localhost:3306/dbs_v1";
 	static Connection connection;
-	static String query;
+	static String query,query1;
 	static Statement statement,statement1;
 	static ResultSet result,result1,result2;
 	static String strg;
@@ -87,26 +87,25 @@ public class Cart {
 		query = "select * from medicine where Batch_no="+btchno+";";
 		result = statement.executeQuery(query);
 		String name="",mrp="",bno="",company="";
+		int qty=1;
 		if(result.next())
 		{
 			name = result.getString("Name");
 			mrp = result.getString("MRP");
 			bno = btchno;
 			company = result.getString("Company");
+			qty = Integer.parseInt(result.getString("Quantity"));
 		}
 		query = "select * from cart"+strg+" where batch_no = "+bno+";";
 		result = statement.executeQuery(query);
 		if(result.next())
 		{
-			String as,df,gh;
-			as = result.getString("name");
-			df = result.getString("mrp");
-			gh = result.getString("company");
 			int abcd=1;
 			query = "select quantity from cart"+strg+" where batch_no = "+bno+";";
 			result = statement.executeQuery(query);
 			if(result.next())
 			abcd = result.getInt("quantity");
+			if(qty-abcd>0)
 			++abcd;
 			query = "update cart"+strg+" set quantity = "+abcd+" where batch_no = "+bno+";";
 		}
@@ -263,6 +262,7 @@ public class Cart {
 				{
 					public void actionPerformed(ActionEvent e)
 					{
+						int qty1=1;
 						msg1.setVisible(false);
 						String w1,w2,w3,w4,w5;
 						w1 = eda.getText().toString().trim();
@@ -497,6 +497,12 @@ public class Cart {
 								t.addCell(cell);
 								s+=x;
 								i++;
+								query = "select * from medicine where Batch_no = "+result.getString("batch_no").toString()+";";
+								result1 = statement1.executeQuery(query);
+								if(result1.next())
+								qty1=Integer.parseInt(result1.getString("Quantity"));
+								query = "update medicine set Quantity = "+(qty1-Integer.parseInt(result.getString("quantity").toString()))+" where Batch_no = "+result.getString("batch_no").toString()+";";
+								statement1.execute(query);
 							}
 							Paragraph p1 = new Paragraph();
 							phrase = new Phrase("Subtotal\n",f1);
@@ -665,7 +671,17 @@ public class Cart {
 				int i = medt.getSelectedRow();
 				if(i>=0)
 				{
-					int a = Integer.parseInt(medt1.getValueAt(i, 3).toString().trim());
+					query = "select * from medicine where Batch_no = "+medt1.getValueAt(i, 2).toString().trim()+";";
+					int a = Integer.parseInt(medt1.getValueAt(i, 3).toString().trim()),qty=1;
+					try {
+						result = statement.executeQuery(query);
+						if(result.next())
+						qty=Integer.parseInt(result.getString("Quantity"));
+					} catch (SQLException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
+					if(qty-a>0)
 					++a;
 					medt1.setValueAt(a, i, 3);
 					String bno1,quantity1;
@@ -695,7 +711,7 @@ public class Cart {
 						medt1.setValueAt(a, i, 3);
 						String bno1,quantity1;
 						bno1 = medt1.getValueAt(i, 2).toString().trim();
-						quantity1 = medt1.getValueAt(i, 2).toString().trim();
+						quantity1 = medt1.getValueAt(i, 3).toString().trim();
 						query = "update cart"+str+" set quantity = "+quantity1+" where batch_no = "+bno1+";";
 						try {
 							statement.execute(query);
