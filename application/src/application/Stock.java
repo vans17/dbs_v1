@@ -475,6 +475,12 @@ public class Stock {
 		expmsg.setForeground(Color.red);
 		expmsg.setVisible(false);
 		panelbg.add(expmsg);
+		JLabel qtymsg = new JLabel("*Stock for this product is over");
+		qtymsg.setBounds(350,190,250,30);
+		qtymsg.setFont(new Font("Times New Roman",Font.PLAIN,18));
+		qtymsg.setForeground(Color.red);
+		qtymsg.setVisible(false);
+		panelbg.add(qtymsg);
 		JButton ret = new JButton("Logout");
 		ret.setFont(new Font("",Font.BOLD,16));
 		ret.setBounds(300, 665, 100, 50);
@@ -540,7 +546,8 @@ public class Stock {
 			public void actionPerformed(ActionEvent e)
 			{
 				expmsg.setVisible(false);
-				String dt="",expdate="";
+				qtymsg.setVisible(false);
+				String dt="",expdate="",qty="";
 				Stock b = new Stock();
 				String idmed1 = b.extract_ID(cbmed.getSelectedItem().toString().trim());
 				query = "select * from medicine where Batch_no = '"+idmed1+"';";
@@ -558,6 +565,12 @@ public class Stock {
 						cosmedt.setText("Rs. "+result.getString("Cost"));
 						qtymedt.setText(result.getString("Quantity")+" units");
 						expdate = result.getString("D_O_E");
+						qty=result.getString("Quantity");
+						nmed.setForeground(null);
+						qtymed.setForeground(null);
+						qtymedt.setForeground(null);
+						DOEed.setForeground(null);
+						DOEedt.setForeground(null);
 					}
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
@@ -583,12 +596,16 @@ public class Stock {
 					expmsg.setVisible(true);
 				}
 				else
+				expmsg.setVisible(false);
+				if(Integer.parseInt(qty)==0)
 				{
-					DOEed.setForeground(null);
-					DOEedt.setForeground(null);
-					nmed.setForeground(null);
-					expmsg.setVisible(false);
+					nmed.setForeground(Color.red);
+					qtymed.setForeground(Color.red);
+					qtymedt.setForeground(Color.red);
+					qtymsg.setVisible(true);
 				}
+				else
+				qtymsg.setVisible(false);
 				nmed.setVisible(true);
 				cmpmed.setVisible(true);
 				cmpmedt.setVisible(true);
@@ -638,13 +655,16 @@ public class Stock {
 			public void actionPerformed(ActionEvent e)
 			{
 				Stock c = new Stock();
-				String dt="",expdate="";
+				String dt="",expdate="",qty="";
 				String idmed1 = c.extract_ID(cbmed.getSelectedItem().toString().trim());
 				query = "select * from medicine where Batch_no = '"+idmed1+"';";
 				try {
 					result = statement.executeQuery(query);
 					if(result.next())
-					expdate = result.getString("D_O_E");
+					{
+						expdate = result.getString("D_O_E");
+						qty = result.getString("Quantity");
+					}
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -667,13 +687,32 @@ public class Stock {
 					exper.setBounds(600,400,355,100);
 					exper.setIconImage(warning.getImage());
 					exper.getContentPane().setBackground(Color.white);
-					JLabel emsg = new JLabel();
-					emsg.setText("This product has expired and cannot be added to cart!");
-					emsg.setFont(new Font("Times New Roman",Font.PLAIN,16));
-					exper.add(emsg);
+					JLabel emsg1 = new JLabel();
+					emsg1.setText("This product has expired and cannot be added to cart!");
+					emsg1.setFont(new Font("Times New Roman",Font.PLAIN,16));
+					exper.add(emsg1);
 					exper.setVisible(true);
 					exper.setLayout(null);
 					exper.setResizable(false);
+				}
+				else if(Integer.parseInt(qty)==0)
+				{
+					JFrame qtyer = new JFrame("Error");
+					qtyer.setBounds(600,400,355,100);
+					qtyer.setIconImage(warning.getImage());
+					qtyer.getContentPane().setBackground(Color.white);
+					JLabel bg5 = new JLabel("",JLabel.CENTER);
+					bg5.setBounds(0,0,355,100);
+					bg5.setBackground(new Color(0,0,0,0));
+					qtyer.add(bg5);
+					JLabel emsg2 = new JLabel();
+					emsg2.setText("The stock for this product is over!");
+					emsg2.setFont(new Font("Times New Roman",Font.PLAIN,16));
+					emsg2.setBounds(60,20,250,20);
+					bg5.add(emsg2);
+					qtyer.setVisible(true);
+					qtyer.setLayout(null);
+					qtyer.setResizable(false);
 				}
 				else
 				{
