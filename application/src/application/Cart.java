@@ -36,7 +36,7 @@ public class Cart {
 	
 	static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 	static final String NAME = "root";
-	static final String PASSWORD = "rootpassword";
+	static final String PASSWORD = "Sharvani17#";
 	static final String URL = "jdbc:mysql://localhost:3306/dbs_v1";
 	static Connection connection;
 	static String query;
@@ -346,6 +346,7 @@ public class Cart {
 							PdfPTable t0 = new PdfPTable(4);
 							t0.setWidthPercentage(100);
 							t0.setSpacingAfter(10);
+							
 							phrase = new Phrase("Patient:\n\n",fo);
 							cell = new PdfPCell(phrase);
 							t0.addCell(cell).setBorder(0);
