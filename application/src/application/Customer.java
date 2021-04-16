@@ -76,13 +76,23 @@ public class Customer{
 		p2.setVisible(true);
 		p1.add(p2);
 		JPanel p3 = new JPanel();
-		p3.setBounds(500,240,1000,250);
+		p3.setBounds(500,300,1000,250);
 		p3.setBorder(blackline);
 		//p3.setBackground(new Color(0,0,0,0));
 		p3.setLayout(null);
 		p3.setVisible(true);
 		bg.add(p3);
-		
+		JLabel l3 = new JLabel("Select a customer:");// drop down
+		l3.setFont(new Font("Times New Roman",Font.BOLD,25));
+		l3.setForeground(new Color(53,0,102));
+		l3.setBounds(490,175,1000,40);
+		try{
+            Font font = Font.createFont(Font.TRUETYPE_FONT, Login.class.getResourceAsStream("Rene Bieder  Milliard Light.otf"));
+            l3.setFont(font.deriveFont(Font.BOLD, 25f));
+        }
+        catch(Exception e){}
+		bg.add(l3);
+
 		JLabel l0 = new JLabel();
 		l0.setText("Welcome,");
 		l0.setFont(new Font("Times New Roman",Font.BOLD,25));
@@ -124,17 +134,17 @@ public class Customer{
 		
 		
 
-		JLabel l3 = new JLabel("Medicines Bought");
-		l3.setFont(new Font("Times New Roman",Font.BOLD,25));
-		l3.setForeground(new Color(53,0,102));
-		l3.setBounds(490,175,1000,40);
+		JLabel l4 = new JLabel("Transaction history of Customer");
+		l4.setFont(new Font("Times New Roman",Font.BOLD,25));
+		l4.setForeground(new Color(53,0,102));
+		l4.setBounds(490,260,1000,40);
 		try{
             Font font = Font.createFont(Font.TRUETYPE_FONT, Login.class.getResourceAsStream("Rene Bieder  Milliard Light.otf"));
-            l3.setFont(font.deriveFont(Font.BOLD, 25f));
+            l4.setFont(font.deriveFont(Font.BOLD, 25f));
         }
         catch(Exception e){}
 
-		bg.add(l3);
+		bg.add(l4);
 		JButton med = new JButton(medc);
 		med.setBounds(70,10,160,160);
 		p1.add(med);
@@ -184,15 +194,15 @@ public class Customer{
 		trnsl.setFont(new Font("",Font.PLAIN,20));
 		trnsl.setForeground(new Color(53,0,102));
 		p1.add(trnsl);
-		JLabel l4 = new JLabel("Profile");
+		JLabel l9 = new JLabel("Profile");
 		try{
             Font font = Font.createFont(Font.TRUETYPE_FONT, Login.class.getResourceAsStream("Rene Bieder  Milliard Light.otf"));
-            l4.setFont(font.deriveFont(Font.BOLD, 24f));
+            l9.setFont(font.deriveFont(Font.BOLD, 24f));
         }
         catch(Exception e){}
-		l4.setBounds(15,5,150,40);
-		l4.setForeground(new Color(53,0,102));
-		p2.add(l4);
+		l9.setBounds(15,5,150,40);
+		l9.setForeground(new Color(53,0,102));
+		p2.add(l9);
 		JLabel l5 = new JLabel("Name: "+str);
 		try{
             Font font = Font.createFont(Font.TRUETYPE_FONT, Login.class.getResourceAsStream("Rene Bieder  Milliard Light.otf"));
@@ -229,7 +239,7 @@ public class Customer{
 		l8.setBounds(15,150,345,40);
 		l8.setForeground(new Color(53,0,102));
 		p2.add(l8);
-		
+	
 		JButton ret = new JButton("Logout");
 		ret.setFont(new Font("",Font.BOLD,16));
 		ret.setBounds(200, 665, 100, 50);
@@ -284,8 +294,15 @@ public class Customer{
 				lgt.setResizable(false);
 			}
 		});
-		
-		
+		JComboBox cbmed = new JComboBox();
+		cbmed.setBounds(500,220,500,20);
+		query="select * from customer ;";
+		result = statement.executeQuery(query);
+		while(result.next())
+		{
+			cbmed.addItem(result.getString("Customer_ID")+":"+result.getString("Name")+":"+result.getString("Contact_no"));
+		}//hemlo
+		bg.add(cbmed);
 
 		med.addActionListener(new ActionListener()
 		{
@@ -302,7 +319,7 @@ public class Customer{
 		});
 		Object[] columns = {"Transaction_ID","Purchase_date","Time","Amount","Batch_no","Quantity"};
 		JTable lgin = new JTable();
-		lgin.setBounds(500,550,1000,250);
+		lgin.setBounds(500,300,1000,250);
 		lgin.setRowHeight(25);
 		p3.add(lgin);
 		DefaultTableModel lgint = new DefaultTableModel();
