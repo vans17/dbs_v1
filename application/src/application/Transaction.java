@@ -307,13 +307,6 @@ public class Transaction{
 						}
 					}
 				});
-				query = "drop table if exists cart;";
-				try {
-					statement.execute(query);
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
 				lgt.setLayout(null);
 				lgt.setVisible(true);
 				lgt.setResizable(false);

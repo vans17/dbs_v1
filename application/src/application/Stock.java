@@ -238,6 +238,18 @@ public class Stock {
 		JButton trns = new JButton(trnslogo);
 		trns.setBounds(245,210,160,160);
 		p1.add(trns);
+		trns.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				try {
+					new Transaction().transaction_display(strg, 1);
+					f.hide();
+				}
+				catch(Exception err) {}
+				
+			}
+		});
 		JLabel trnsl = new JLabel("Transactions");
 		trnsl.setBounds(265,370,150,25);
 		trnsl.setFont(new Font("",Font.PLAIN,20));
