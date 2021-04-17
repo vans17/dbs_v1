@@ -188,68 +188,49 @@ public class Cart {
 			clr.setVisible(false);
 			co.setVisible(false);
 		}
+		//JButton co= new JButton("C");
+		//c//o.setBounds(330,350,100,40);
+		//bg.add(co);
+		
 		co.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				JFrame cst_dtl = new JFrame("Customer dteails");
+				JFrame cst_dtl = new JFrame("Customer details");
 				cst_dtl.setBounds(600,250,500,350);
 				JLabel bg1 = new JLabel("",white_bg,JLabel.CENTER);
 				cst_dtl.add(bg1);
-				JLabel nl = new JLabel("Name: ");
+				JLabel nl = new JLabel("Contact number: ");
 				nl.setBounds(100,30,300,30);
 				nl.setFont(new Font("Times New Roman",Font.PLAIN,16));
 				bg1.add(nl);
-				JLabel cidl = new JLabel("Customer ID: ");
-				cidl.setBounds(100,60,300,30);
-				cidl.setFont(new Font("Times New Roman",Font.PLAIN,16));
-				bg1.add(cidl);
-				JLabel al = new JLabel("Age: ");
-				al.setBounds(100,90,300,30);
-				al.setFont(new Font("Times New Roman",Font.PLAIN,16));
-				bg1.add(al);
-				JLabel cnol = new JLabel("Contact number: ");
-				cnol.setBounds(100,120,300,30);
-				cnol.setFont(new Font("Times New Roman",Font.PLAIN,16));
-				bg1.add(cnol);
-				JLabel adl = new JLabel("Address: ");
-				adl.setBounds(100,150,300,30);
-				adl.setFont(new Font("Times New Roman",Font.PLAIN,16));
-				bg1.add(adl);
 				JTextField eda = new JTextField();
 				eda.setBounds(230,30,200,25);
 				eda.setFont(new Font("Times New Roman",Font.PLAIN,16));
 				bg1.add(eda);
-				JTextField edb = new JTextField();
-				edb.setBounds(230,60,200,25);
-				edb.setFont(new Font("Times New Roman",Font.PLAIN,16));
-				bg1.add(edb);
-				JTextField edc = new JTextField();
-				edc.setBounds(230,90,200,25);
-				edc.setFont(new Font("Times New Roman",Font.PLAIN,16));
-				bg1.add(edc);
-				JTextField edd = new JTextField();
-				edd.setBounds(230,120,200,25);
-				edd.setFont(new Font("Times New Roman",Font.PLAIN,16));
-				bg1.add(edd);
-				JTextArea ta1 = new JTextArea();
-				ta1.setBounds(230, 150, 200, 75);
-				ta1.setFont(new Font("Times New Roman",Font.PLAIN,16));
-				ta1.setBorder(blackline);
-				bg1.add(ta1);
 				JLabel msg1 = new JLabel("*Fields cannot be empty");
-				msg1.setBounds(210, 225, 200, 30);
+				msg1.setBounds(100,60,300,30);
 				msg1.setFont(new Font("Times New Roman",Font.PLAIN,16));
 				msg1.setForeground(Color.red);
 				msg1.setVisible(false);
 				bg1.add(msg1);
+				JLabel msg2 = new JLabel("*Customer has to be created");
+				msg2.setBounds(100,60,300,30);
+				msg2.setFont(new Font("Times New Roman",Font.PLAIN,16));
+				msg2.setForeground(Color.red);
+				msg2.setVisible(false);
+				bg1.add(msg2);
+				JButton crt = new JButton("Create customer");
+				crt.setBounds(140, 200, 200, 30);
+				crt.setFont(new Font("Times New Roman",Font.BOLD,16));
+				bg1.add(crt);
 				JButton prt = new JButton("Print Invoice and Confirm Order");
 				prt.setFont(new Font("",Font.BOLD,13));
-				prt.setBounds(100, 260, 245, 35);
+				prt.setBounds(20, 260, 265, 35);
 				bg1.add(prt);
 				JButton cancel = new JButton("Cancel");
 				cancel.setFont(new Font("",Font.BOLD,13));
-				cancel.setBounds(360, 260, 105, 35);
+				cancel.setBounds(330, 260, 105, 35);
 				bg1.add(cancel);
 				cancel.addActionListener(new ActionListener()
 				{
@@ -258,28 +239,158 @@ public class Cart {
 						cst_dtl.hide();
 					}
 				});
+				crt.addActionListener(new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
+						JFrame cst_dtl = new JFrame("Customer details");
+						cst_dtl.setBounds(600,250,500,350);
+						JLabel bg1 = new JLabel("",white_bg,JLabel.CENTER);
+						cst_dtl.add(bg1);
+						JLabel nl = new JLabel("Name: ");
+						nl.setBounds(100,30,300,30);
+						nl.setFont(new Font("Times New Roman",Font.PLAIN,16));
+						bg1.add(nl);
+						JLabel cidl = new JLabel("Customer ID: ");
+						cidl.setBounds(100,60,300,30);
+						cidl.setFont(new Font("Times New Roman",Font.PLAIN,16));
+						bg1.add(cidl);
+						JLabel al = new JLabel("Age: ");
+						al.setBounds(100,90,300,30);
+						al.setFont(new Font("Times New Roman",Font.PLAIN,16));
+						bg1.add(al);
+						JLabel cnol = new JLabel("Contact number: ");
+						cnol.setBounds(100,120,300,30);
+						cnol.setFont(new Font("Times New Roman",Font.PLAIN,16));
+						bg1.add(cnol);
+						JLabel adl = new JLabel("Address: ");
+						adl.setBounds(100,150,300,30);
+						adl.setFont(new Font("Times New Roman",Font.PLAIN,16));
+						bg1.add(adl);
+						JTextField eda = new JTextField();
+						eda.setBounds(230,30,200,25);
+						eda.setFont(new Font("Times New Roman",Font.PLAIN,16));
+						bg1.add(eda);
+						JTextField edb = new JTextField();
+						edb.setBounds(230,60,200,25);
+						edb.setFont(new Font("Times New Roman",Font.PLAIN,16));
+						bg1.add(edb);
+						JTextField edc = new JTextField();
+						edc.setBounds(230,90,200,25);
+						edc.setFont(new Font("Times New Roman",Font.PLAIN,16));
+						bg1.add(edc);
+						JTextField edd = new JTextField();
+						edd.setBounds(230,120,200,25);
+						edd.setFont(new Font("Times New Roman",Font.PLAIN,16));
+						bg1.add(edd);
+						JTextArea ta1 = new JTextArea();
+						ta1.setBounds(230, 150, 200, 75);
+						ta1.setFont(new Font("Times New Roman",Font.PLAIN,16));
+						ta1.setBorder(blackline);
+						bg1.add(ta1);
+						JLabel msg1 = new JLabel("Enter contact properly");
+						msg1.setBounds(210, 225, 200, 30);
+						msg1.setFont(new Font("Times New Roman",Font.PLAIN,16));
+						msg1.setForeground(Color.red);
+						msg1.setVisible(false);
+						bg1.add(msg1);
+						JButton save = new JButton("Save changes");
+						save.setFont(new Font("",Font.BOLD,13));
+						save.setBounds(100, 260, 245, 35);
+						bg1.add(save);
+						JButton cancel = new JButton("Cancel");
+						cancel.setFont(new Font("",Font.BOLD,13));
+						cancel.setBounds(360, 260, 105, 35);
+						bg1.add(cancel);
+						cancel.addActionListener(new ActionListener()
+						{
+							public void actionPerformed(ActionEvent e)
+							{
+								cst_dtl.hide();
+							}
+						});
+						save.addActionListener(new ActionListener()
+						{
+							public void actionPerformed(ActionEvent e)
+							{
+								String w1,w2 = null,w4 = null,w5 = null,w3 = null;
+								w1 = eda.getText().toString().trim();
+								//w2 = edb.getText().toString().trim(); 
+								w3 = edc.getText().toString().trim();
+								w4 = edd.getText().toString().trim();
+								w5 = ta1.getText().toString().trim();
+								if(w1.length()==0)
+								{
+									msg1.setVisible(true);
+								}
+								else {
+									//query= "INSERT INTO customer ('Name', 'Age', 'Contact_no', 'Address') VALUES('"+w1+"',"+w3+","+w4+",'"+w5+"');";
+									query = "insert into customer values('"+w1+"','"+w2+"',"+w3+","+w4+",'"+w5+"');";
+									try {
+										statement1.execute(query);
+									JOptionPane.showMessageDialog(null,"Customer details inserted Successfully","Success Operation",1);
+									} catch (SQLException e1) {
+										// TODO Auto-generated catch block
+										e1.printStackTrace();
+									}
+								}
+								cst_dtl.hide();
+								
+							}
+						});
+						cst_dtl.setVisible(true);
+						cst_dtl.setLayout(null);
+						cst_dtl.setResizable(false);
+						
+					}
+				});
 				prt.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e)
 					{
 						int qty1=1;
 						msg1.setVisible(false);
-						String w1,w2,w3,w4,w5;
+						String w1,w2 = null,w4 = null,w5 = null,w3 = null;
+						Integer i3;
 						w1 = eda.getText().toString().trim();
-						w2 = edb.getText().toString().trim();
-						w3 = edc.getText().toString().trim();
-						w4 = edd.getText().toString().trim();
-						w5 = ta1.getText().toString().trim();
-						if(w1.length()==0||w2.length()==0||w3.length()==0||w4.length()==0||w5.length()==0)
-						{
-							msg1.setVisible(true);
+//						w2 = edb.getText().toString().trim();
+//						w3 = edc.getText().toString().trim();
+//						w4 = edd.getText().toString().trim();
+//						w5 = ta1.getText().toString().trim();
+						int ch=0;
+						if(w1.length()!=0 ) {
+						query="select * from customer where Contact_no = "+w1+";";
+						try {
+							result = statement.executeQuery(query);
+							if(!result.next()) {
+								msg2.setVisible(true);
+								ch=1;
+							}
+						} catch (SQLException e2) {
+							// TODO Auto-generated catch block
+							e2.printStackTrace();
 						}
-						else
-						{
+					   } 
+						 if(w1.length()==0 || w1.length()!=10)
+						{   
+							msg1.setVisible(true);
+						}	
+						else if(ch==0)
+						{   
 							Rectangle ps = new Rectangle(PageSize.A4);
 							ps.setBackgroundColor(new BaseColor(230, 236, 255));
 							Document doc = new Document(ps);
 						try {
+							query="select * from customer where Contact_no = "+w1+";";
+							result = statement.executeQuery(query);
+							if(result.next()) {
+								w2=result.getString("Customer_ID");
+								i3=result.getInt("Age");
+								w4=result.getString("Name");
+							    w5=result.getString("Address");
+							    w3=String.valueOf(i3);
+							}
+						
 							Cart a = new Cart();
 							String trnsid = "";
 							query = "select curdate();";
@@ -291,7 +402,7 @@ public class Cart {
 							if(result.next())
 							trnsid+=a.extract_Time(result.getString("curtime()"));
 							trnsid+=w2;
-							String file = "src\\Invoices\\"+w1+"_"+w2+"_Invoice.pdf";
+							String file = "src\\Invoices\\"+w4+"_"+w2+"_Invoice.pdf";
 							PdfWriter.getInstance(doc, new FileOutputStream(file));
 							doc.open();
 							PdfPCell cell = new PdfPCell();
@@ -362,7 +473,7 @@ public class Cart {
 							phrase = new Phrase("Name:",fo1);
 							cell = new PdfPCell(phrase);
 							t0.addCell(cell).setBorder(0);
-							phrase = new Phrase(w1,fo1);
+							phrase = new Phrase(w4,fo1);
 							cell = new PdfPCell(phrase);
 							t0.addCell(cell).setBorder(0);
 							phrase = new Phrase("Invoice no:",fo1);
@@ -388,7 +499,7 @@ public class Cart {
 							cell = new PdfPCell(phrase);
 							cell.setRowspan(3);
 							t0.addCell(cell).setBorder(0);
-							phrase = new Phrase(w4,fo1);
+							phrase = new Phrase(w1,fo1);
 							cell = new PdfPCell(phrase);
 							cell.setRowspan(3);
 							t0.addCell(cell).setBorder(0);
@@ -601,7 +712,7 @@ public class Cart {
 							result = statement.executeQuery(query);
 							while(result.next())
 							{
-								query = "insert into sales_log values ("+result.getString("batch_no")+",'"+date12+"','"+trnsid+"',"+fin1+","+result.getString("quantity")+","+str+",'"+w1+"');";
+								query = "insert into sales_log values ("+result.getString("batch_no")+",'"+date12+"','"+trnsid+"',"+fin1+","+result.getString("quantity")+","+str+",'"+w4+"');";
 								statement1.execute(query);
 							}
 						} catch (IOException | DocumentException | SQLException e1) {
@@ -615,6 +726,7 @@ public class Cart {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
+						  JOptionPane.showMessageDialog(null," Invoice generated ","Success Operation",1);
 						cst_dtl.hide();
 						f.hide();}
 					}
@@ -624,6 +736,7 @@ public class Cart {
 				cst_dtl.setResizable(false);
 			}
 		});
+		
 		clr.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)

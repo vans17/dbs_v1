@@ -298,11 +298,7 @@ public void Company_display(String str) throws ClassNotFoundException, SQLExcept
 	{
 		public void actionPerformed(ActionEvent e)
 		{
-//			if((dctf1.getText().toString().trim().length()==0))
-//			checkname.setVisible(true);
-//			else if ((dctf1.getText().toString().trim().length()!=10)){
-//			 checknumber.setVisible(true);
-//			}
+
 				try {
 					String a;
 					a=dctf1.getText().toString().trim();
@@ -650,6 +646,7 @@ public void Company_display(String str) throws ClassNotFoundException, SQLExcept
 							 JOptionPane.showMessageDialog(null,"Contact info inserted Successfully","Success Operation",1);
 						f.hide();
 						Company cps = new Company();
+						acf.hide();
 						try {
 							cps.Company_display(strg);
 						} catch (ClassNotFoundException | SQLException e1) {
@@ -661,7 +658,8 @@ public void Company_display(String str) throws ClassNotFoundException, SQLExcept
 						e1.printStackTrace();
 						 JOptionPane.showMessageDialog(null,"No company entry with this name","Error",2);
 					}
-					acf.hide();}
+					//
+					}
 				}
 			});
 			acf.setResizable(false);

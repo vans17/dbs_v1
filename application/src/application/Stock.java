@@ -723,6 +723,7 @@ public class Stock {
 						e1.printStackTrace();
 					}
 				}
+		  JOptionPane.showMessageDialog(null,"Added to cart successfully","Success Operation",1);
 			}
 		});
 		add_med.addActionListener(new ActionListener()
