@@ -22,7 +22,7 @@ public class Stock {
 			
 	static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 	static final String NAME = "root";
-	static final String PASSWORD = "rootpassword";
+	static final String PASSWORD = "Sharvani17#";
 	static final String URL = "jdbc:mysql://localhost:3306/dbs_v1";
 	static Connection connection;
 	static String query;
@@ -723,6 +723,7 @@ public class Stock {
 						e1.printStackTrace();
 					}
 				}
+		  JOptionPane.showMessageDialog(null,"Added to cart successfully","Success Operation",1);
 			}
 		});
 		add_med.addActionListener(new ActionListener()

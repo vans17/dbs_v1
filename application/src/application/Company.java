@@ -22,7 +22,7 @@ ImageIcon app_logo = new ImageIcon(getClass().getResource("app_logo.png"));
 
 static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 static final String NAME = "root";
-static final String PASSWORD = "rootpassword";
+static final String PASSWORD = "Sharvani17#";
 static final String URL = "jdbc:mysql://localhost:3306/dbs_v1";
 static Connection connection;
 static String query;
@@ -250,20 +250,36 @@ public void Company_display(String str) throws ClassNotFoundException, SQLExcept
 	p2.add(l8);
 	
 	
+	
+	//search button for company table
+	JLabel dcl12 = new JLabel("Search by name:");
+	dcl12.setBounds(530, 260, 180, 35);
+	dcl12.setFont(new Font("Times New Roman",Font.BOLD,17));
+	bg.add(dcl12);
+	JTextField dctf1 = new JTextField();
+	dctf1.setBounds(670, 260, 180, 35);
+	dctf1.setFont(new Font("Times New Roman",Font.PLAIN,16));
+	bg.add(dctf1);
+	JButton search_b= new JButton("Search"); 
+	search_b.setBounds(880, 260, 120, 35);
+	search_b.setFont(new Font("",Font.BOLD,16));
+	bg.add(search_b);
+	
+	
 	Object[] columns = {"Company name","State","City","Pin"};
 	JTable lgin = new JTable();
-	lgin.setBounds(500,300,1040,220);
-	lgin.setRowHeight(25);
+	lgin.setBounds(500,240,1040,320);
+	lgin.setRowHeight(30);
 	p3.add(lgin);
 	DefaultTableModel lgint = new DefaultTableModel();
 	lgint.setColumnIdentifiers(columns);
 	lgin.setModel(lgint);
 	JScrollPane sp = new JScrollPane(lgin);
-	sp.setBounds(0,40,1040,220);
+	sp.setBounds(0,70,1040,220);
 	p3.add(sp);
 	Object[] row = new Object[4];
 	
-		query = "select * from company;";
+		query = "select * from company order by Name;";
 		result = statement.executeQuery(query);
 		while(result.next())
 		{
@@ -278,21 +294,85 @@ public void Company_display(String str) throws ClassNotFoundException, SQLExcept
 	f.setResizable(false);
 	f.setIconImage(logo.getImage());
 	f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	search_b.addActionListener(new ActionListener()
+	{
+		public void actionPerformed(ActionEvent e)
+		{
+
+				try {
+					String a;
+					a=dctf1.getText().toString().trim();
+					if(a.length()==0) {	
+						lgint.getDataVector().removeAllElements();
+						lgint.fireTableDataChanged();
+							query = "select * from company ;";
+							result = statement.executeQuery(query);
+							while(result.next())
+							{
+								row[0]=result.getString("Name");
+								row[1]=result.getString("State");
+								row[2]=result.getString("City");
+								row[3]=result.getString("Pin");
+								lgint.addRow(row);
+							}
+					}
+					else {
+						lgint.getDataVector().removeAllElements();
+						lgint.fireTableDataChanged();
+							query = "select * from company where Name like'%"+a+"%';";
+							result = statement.executeQuery(query);
+							while(result.next())
+							{
+								row[0]=result.getString("Name");
+								row[1]=result.getString("State");
+								row[2]=result.getString("City");
+								row[3]=result.getString("Pin");
+								lgint.addRow(row);
+							}
+					}
+					f.setLayout(null);
+					f.setVisible(true);
+					f.setResizable(false);
+					f.setIconImage(logo.getImage());
+					f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+						      
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				}
+			}
+		);
+
+	
+	
+	JLabel se  = new JLabel("Search :");
+	se.setBounds(550, 550, 180, 35);
+	se.setFont(new Font("Times New Roman",Font.BOLD,18));
+	bg.add(se);
+	JTextField se1 = new JTextField();
+	se1.setBounds(650, 550, 180, 35);
+	se1.setFont(new Font("Times New Roman",Font.PLAIN,16));
+	bg.add(se1);
+	JButton search_b1= new JButton("Search"); 
+	search_b1.setBounds(850, 550, 120, 35);
+	search_b1.setFont(new Font("",Font.BOLD,16));
+	bg.add(search_b1);
 	
 	Object[] columns1 = {"Company ","Contact"};
 	JTable Contact = new JTable();
-	Contact.setBounds(500,520,440,220);
+	Contact.setBounds(500,240,440,220);
 	Contact.setRowHeight(25);
 	p3.add(Contact);
 	DefaultTableModel contint = new DefaultTableModel();
 	contint.setColumnIdentifiers(columns1);
 	Contact.setModel(contint);
 	JScrollPane sp1 = new JScrollPane(Contact);
-	sp1.setBounds(0,290,440,220);
+	sp1.setBounds(0,360,440,220);
 	p3.add(sp1);
 	Object[] rowC = new Object[2];
 	
-		query = "select * from company_contact;";
+		query = "select * from company_contact order by Company;";
 		result = statement.executeQuery(query);
 		while(result.next())
 		{
@@ -305,6 +385,52 @@ public void Company_display(String str) throws ClassNotFoundException, SQLExcept
 	f.setResizable(false);
 	f.setIconImage(logo.getImage());
 	f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	
+	search_b1.addActionListener(new ActionListener()
+	{
+		public void actionPerformed(ActionEvent e)
+		{
+
+				try {
+					String a;
+					a=se1.getText().toString().trim();
+					if(a.length()==0) {	
+						contint.getDataVector().removeAllElements();
+						contint.fireTableDataChanged();
+							query = "select * from company_contact ;";
+							result = statement.executeQuery(query);
+							while(result.next())
+							{
+								rowC[0]=result.getString("Company");
+								rowC[1]=result.getString("Contact_no");
+								contint.addRow(rowC);
+							}
+					}
+					else {
+						contint.getDataVector().removeAllElements();
+						contint.fireTableDataChanged();
+							query = "select * from company_contact where Company like'%"+a+"%';";
+							result = statement.executeQuery(query);
+							while(result.next())
+							{
+								rowC[0]=result.getString("Company");
+								rowC[1]=result.getString("Contact_no");
+								contint.addRow(rowC);
+							}
+					}
+					f.setLayout(null);
+					f.setVisible(true);
+					f.setResizable(false);
+					f.setIconImage(logo.getImage());
+					f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+						      
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				}
+			}
+		);
 	
 	del_contact.addActionListener(new ActionListener()
 	{
@@ -520,6 +646,7 @@ public void Company_display(String str) throws ClassNotFoundException, SQLExcept
 							 JOptionPane.showMessageDialog(null,"Contact info inserted Successfully","Success Operation",1);
 						f.hide();
 						Company cps = new Company();
+						acf.hide();
 						try {
 							cps.Company_display(strg);
 						} catch (ClassNotFoundException | SQLException e1) {
@@ -531,7 +658,8 @@ public void Company_display(String str) throws ClassNotFoundException, SQLExcept
 						e1.printStackTrace();
 						 JOptionPane.showMessageDialog(null,"No company entry with this name","Error",2);
 					}
-					acf.hide();}
+					//
+					}
 				}
 			});
 			acf.setResizable(false);
