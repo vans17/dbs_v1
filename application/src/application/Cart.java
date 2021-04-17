@@ -346,6 +346,7 @@ public class Cart {
 							PdfPTable t0 = new PdfPTable(4);
 							t0.setWidthPercentage(100);
 							t0.setSpacingAfter(10);
+							
 							phrase = new Phrase("Patient:\n\n",fo);
 							cell = new PdfPCell(phrase);
 							t0.addCell(cell).setBorder(0);
@@ -593,7 +594,7 @@ public class Cart {
 							result = statement.executeQuery(query);
 							while(result.next())
 							{
-								query = "insert into customer_history values ('"+trnsid+"','"+date12+"',"+result.getString("batch_no")+","+fin1+",'"+time12+"',"+w2+");";
+								query = "insert into customer_history values ('"+trnsid+"','"+date12+"',"+result.getString("batch_no")+","+fin1+",'"+time12+"','"+w2+"');";
 								statement1.execute(query);
 							}
 							query = "select * from cart"+str+";";

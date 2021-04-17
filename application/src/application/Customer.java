@@ -15,6 +15,7 @@ public class Customer{
 	ImageIcon cmplogo = new ImageIcon(getClass().getResource("cmp_logo.png"));
 	ImageIcon cstlogo = new ImageIcon(getClass().getResource("cst_logo.png"));
 	ImageIcon trnslogo = new ImageIcon(getClass().getResource("trns_logo.jpg"));
+	ImageIcon rfrshlogo = new ImageIcon(getClass().getResource("refresh_logo.png"));
 	ImageIcon editlogo = new ImageIcon(getClass().getResource("edit_logo.jpg"));
 	ImageIcon white_bg = new ImageIcon(getClass().getResource("white_bg.jpg"));
 	ImageIcon homel= new ImageIcon(getClass().getResource("home_logo.png"));
@@ -25,11 +26,90 @@ public class Customer{
 	static final String URL = "jdbc:mysql://localhost:3306/dbs_v1";
 	static Connection connection;
 	static String query;
+	static String query2;
 	static Statement statement;
+	static Statement statement2;
 	static ResultSet result;
+	static ResultSet result2;
 	static String strg;
 	static String pswrd;
+	public String extract_ID(String str)
+	{
+		StringBuffer g;
+		int i,x=0;
+		for(i=0;i<=str.length()-1;i++)
+		{
+			if(str.charAt(i)==':')
+			{
+				break;
+			}
+			else
+			{
+				x++;
+			}
+		}
+		g = new StringBuffer(x);
+		for(i=0;i<x;i++)
+		{
+			g.insert(i,str.charAt(i));
+		}
+		//System.out.println(g);
+		return g.toString().trim();
+	}
 	
+	public String extract_Company(String str)
+	{
+		StringBuffer g;
+		int i,x=0;
+		for(i=0;i<str.length();i++)
+		{
+			if(str.charAt(i)==':')
+			{
+				break;
+			}
+			else
+			{
+				x++;
+			}
+		}
+		g = new StringBuffer(x);
+		for(i=0;i<x;i++)
+		{
+			g.insert(i,str.charAt(i));
+		}
+		//System.out.println(g);
+		return g.toString().trim();
+	}
+	
+	public String extract_Date(String str)
+	{
+		StringBuffer g = new StringBuffer(8);
+		int i,j=0;
+		for(i=0;i<str.length();i++)
+		{
+			if(str.charAt(i)!='-')
+			{
+				g.insert(j,str.charAt(i));
+				j++;
+			}
+		}
+		return g.toString().trim();
+	}
+	
+	public String extract_Time(String str)
+	{
+		StringBuffer g = new StringBuffer(6);
+		int i,j=0;
+		for(i=0;i<str.length();i++)
+		{
+			if(str.charAt(i)!=':')
+			{
+				g.insert(j,str.charAt(i));
+				j++;
+			}
+		}
+		return g.toString().trim();
+	}
 	
 	public void customer_display(String str,int status) throws ClassNotFoundException, SQLException
 	{
@@ -37,6 +117,7 @@ public class Customer{
 		Class.forName(DRIVER);
 		connection = DriverManager.getConnection(URL,NAME,PASSWORD);
 		statement = connection.createStatement();
+		statement2=connection.createStatement();
 		query="select * from employee where ID="+str+";";
 		result = statement.executeQuery(query);
 		
@@ -294,6 +375,18 @@ public class Customer{
 				lgt.setResizable(false);
 			}
 		});
+		Object[] columns = {"Transaction_ID","Purchase_date","Time","Amount","Batch_no","Quantity"};
+		JTable lgin = new JTable();
+		lgin.setBounds(500,300,1000,250);
+		lgin.setRowHeight(25);
+		p3.add(lgin);
+		DefaultTableModel lgint = new DefaultTableModel();
+		lgint.setColumnIdentifiers(columns);
+		lgin.setModel(lgint);
+		JScrollPane sp = new JScrollPane(lgin);
+		sp.setBounds(0,0,1000,250);
+		p3.add(sp);
+		Object[] row = new Object[6];
 		JComboBox cbmed = new JComboBox();
 		cbmed.setBounds(500,220,500,20);
 		query="select * from customer ;";
@@ -303,7 +396,108 @@ public class Customer{
 			cbmed.addItem(result.getString("Customer_ID")+":"+result.getString("Name")+":"+result.getString("Contact_no"));
 		}//hemlo
 		bg.add(cbmed);
-
+		JButton refresh = new JButton(rfrshlogo);
+		refresh.setBounds(1100,240,40,40);
+		bg.add(refresh);
+		refresh.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				String dt="",expdate="",qty="";
+				Customer b=new Customer();
+				String cid = b.extract_ID(cbmed.getSelectedItem().toString().trim());
+				if(!cid.equals("0"))
+				{
+					try {
+					//System.out.println("CID:"+cid);
+					query = "select * from customer_history where Customer_ID ='"+cid+"';";
+					result = statement.executeQuery(query);
+					while(result.next())
+					{
+						row[0]=result.getString("Transaction_ID");
+						row[1]=result.getString("Purchase_date");
+						row[2]=result.getString("Time");
+						row[3]=result.getString("Amount");
+						row[4]=result.getString("Batch_no");
+						try {
+						query2 = "select * from sales_log where Sales_transaction_ID ='"+row[0]+"';";
+						result2 = statement2.executeQuery(query2);
+						while(result2.next())
+						{
+						row[5]=result2.getString("Quantity");
+						}}
+						catch(Exception E2)
+						{
+							E2.printStackTrace();
+						}
+						result2.close();
+						lgint.addRow(row);
+					}
+					}
+					catch(Exception E) {E.printStackTrace();};
+				}
+				else
+				{
+					/*query = "select * from purchase_log;";
+					result = statement.executeQuery(query);
+					while(result.next())
+					{
+						row[0]=result.getString("Batch_no");
+						row[1]=result.getString("Purchase_date");
+						row[2]=result.getString("Transcation_ID");
+						row[3]=result.getString("Amount");
+						row[4]=result.getString("Quantity");
+						row[5]=result.getString("Buyer_ID");
+						row[6]=result.getString("Company");
+						lgint.addRow(row);
+					}*/
+				}
+				/*Object[] columns1 = {"Batch No.","Sale date","Transaction ID","Amount","Quantity","Seller ID","Buyer name"};
+				JTable lgin1 = new JTable();
+				lgin1.setBounds(500,550,1000,250);
+				lgin1.setRowHeight(25);
+				p4.add(lgin1);
+				DefaultTableModel lgint1 = new DefaultTableModel();
+				lgint1.setColumnIdentifiers(columns1);
+				lgin1.setModel(lgint1);
+				JScrollPane sp1 = new JScrollPane(lgin1);
+				sp1.setBounds(0,0,1000,250);
+				p4.add(sp1);
+				Object[] row1 = new Object[7];
+				if(!strg.equals("0"))
+				{
+					query = "select * from sales_log where Seller_ID = "+strg+";";
+					result = statement.executeQuery(query);
+					while(result.next())
+					{
+						row1[0]=result.getString("Batch_no");
+						row1[1]=result.getString("Sale_date");
+						row1[2]=result.getString("Sales_transaction_ID");
+						row1[3]=result.getString("Amount");
+						row1[4]=result.getString("Quantity");
+						row1[5]=result.getString("Seller_ID");
+						row1[6]=result.getString("Buyer_name");
+						lgint1.addRow(row1);
+					}
+				}
+				else
+				{
+					query = "select * from sales_log;";
+					result = statement.executeQuery(query);
+					while(result.next())
+					{
+						row1[0]=result.getString("Batch_no");
+						row1[1]=result.getString("Sale_date");
+						row1[2]=result.getString("Sales_transaction_ID");
+						row1[3]=result.getString("Amount");
+						row1[4]=result.getString("Quantity");
+						row1[5]=result.getString("Seller_ID");
+						row1[6]=result.getString("Buyer_name");
+						lgint1.addRow(row1);
+					}
+				}*/
+			}
+		});
 		med.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
@@ -317,93 +511,8 @@ public class Customer{
 				f.hide();
 			}
 		});
-		Object[] columns = {"Transaction_ID","Purchase_date","Time","Amount","Batch_no","Quantity"};
-		JTable lgin = new JTable();
-		lgin.setBounds(500,300,1000,250);
-		lgin.setRowHeight(25);
-		p3.add(lgin);
-		DefaultTableModel lgint = new DefaultTableModel();
-		lgint.setColumnIdentifiers(columns);
-		lgin.setModel(lgint);
-		JScrollPane sp = new JScrollPane(lgin);
-		sp.setBounds(0,0,1000,250);
-		p3.add(sp);
-		Object[] row = new Object[6];
-		if(!strg.equals("0"))
-		{
-			query = "select * from customer_history where Customer_ID = "+strg+";";
-			result = statement.executeQuery(query);
-			while(result.next())
-			{
-				row[0]=result.getString("Transaction_ID");
-				row[1]=result.getString("Purchase_date");
-				row[2]=result.getString("Time");
-				row[3]=result.getString("Amount");
-				row[4]=result.getString("Batch_no");
-				row[5]=result.getString("Quantity");
-				lgint.addRow(row);
-			}
-		}
-		else
-		{
-			/*query = "select * from purchase_log;";
-			result = statement.executeQuery(query);
-			while(result.next())
-			{
-				row[0]=result.getString("Batch_no");
-				row[1]=result.getString("Purchase_date");
-				row[2]=result.getString("Transcation_ID");
-				row[3]=result.getString("Amount");
-				row[4]=result.getString("Quantity");
-				row[5]=result.getString("Buyer_ID");
-				row[6]=result.getString("Company");
-				lgint.addRow(row);
-			}*/
-		}
-		/*Object[] columns1 = {"Batch No.","Sale date","Transaction ID","Amount","Quantity","Seller ID","Buyer name"};
-		JTable lgin1 = new JTable();
-		lgin1.setBounds(500,550,1000,250);
-		lgin1.setRowHeight(25);
-		p4.add(lgin1);
-		DefaultTableModel lgint1 = new DefaultTableModel();
-		lgint1.setColumnIdentifiers(columns1);
-		lgin1.setModel(lgint1);
-		JScrollPane sp1 = new JScrollPane(lgin1);
-		sp1.setBounds(0,0,1000,250);
-		p4.add(sp1);
-		Object[] row1 = new Object[7];
-		if(!strg.equals("0"))
-		{
-			query = "select * from sales_log where Seller_ID = "+strg+";";
-			result = statement.executeQuery(query);
-			while(result.next())
-			{
-				row1[0]=result.getString("Batch_no");
-				row1[1]=result.getString("Sale_date");
-				row1[2]=result.getString("Sales_transaction_ID");
-				row1[3]=result.getString("Amount");
-				row1[4]=result.getString("Quantity");
-				row1[5]=result.getString("Seller_ID");
-				row1[6]=result.getString("Buyer_name");
-				lgint1.addRow(row1);
-			}
-		}
-		else
-		{
-			query = "select * from sales_log;";
-			result = statement.executeQuery(query);
-			while(result.next())
-			{
-				row1[0]=result.getString("Batch_no");
-				row1[1]=result.getString("Sale_date");
-				row1[2]=result.getString("Sales_transaction_ID");
-				row1[3]=result.getString("Amount");
-				row1[4]=result.getString("Quantity");
-				row1[5]=result.getString("Seller_ID");
-				row1[6]=result.getString("Buyer_name");
-				lgint1.addRow(row1);
-			}
-		}*/
+
+
 		f.setLayout(null);
 		f.setVisible(true);
 		f.setResizable(false);
