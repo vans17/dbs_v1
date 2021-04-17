@@ -33,7 +33,7 @@ public class Cart {
 	ImageIcon cart_bg = new ImageIcon(getClass().getResource("cart_bg.jpg"));
 	ImageIcon white_bg = new ImageIcon(getClass().getResource("white_bg.jpg"));
 	ImageIcon logo = new ImageIcon(getClass().getResource("app_logo.png"));
-	
+	//abc
 	static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 	static final String NAME = "root";
 	static final String PASSWORD = "rootpassword";
