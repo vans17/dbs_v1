@@ -744,12 +744,12 @@ public class Stock {
 				{
 					try {
 						new Cart().add_to_Cart(c.extract_Company(cbmed.getSelectedItem().toString().trim()),c.extract_ID(cbmed.getSelectedItem().toString().trim()),strg);
+						JOptionPane.showMessageDialog(null,"Added to cart successfully","Success Operation",1);
 					} catch (ClassNotFoundException | SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				}
-		  JOptionPane.showMessageDialog(null,"Added to cart successfully","Success Operation",1);
 			}
 		});
 		add_med.addActionListener(new ActionListener()
