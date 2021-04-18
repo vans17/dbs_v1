@@ -344,19 +344,19 @@ public class Home {
 		cstl1.setForeground(new Color(53,0,102));
 		p1.add(cstl1);
 		cst.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent e)
-            {
+	    {
+	        public void actionPerformed(ActionEvent e)
+	        {
 
-                try {
-                	
-                	new Customer().customer_display(strg,1);
-                } catch (Exception E) {
-                    // TODO Auto-generated catch block
-                    E.printStackTrace();
-                }
-            }
-        });
+	            try {
+	            	new Customer().customer_display(strg,1);
+	            	f.hide();
+	            } catch (Exception E) {
+	                // TODO Auto-generated catch block
+	                E.printStackTrace();
+	            }
+	        }
+	    });
 		JLabel cstl2 = new JLabel("History");
 		cstl2.setBounds(110,390,100,25);
 		cstl2.setFont(new Font("",Font.PLAIN,20));

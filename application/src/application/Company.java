@@ -149,6 +149,20 @@ public void Company_display(String str) throws ClassNotFoundException, SQLExcept
 	JButton cst = new JButton(cstlogo);
 	cst.setBounds(70,210,160,160);
 	p1.add(cst);
+	cst.addActionListener(new ActionListener()
+    {
+        public void actionPerformed(ActionEvent e)
+        {
+
+            try {
+            	new Customer().customer_display(strg,1);
+            	f.hide();
+            } catch (Exception E) {
+                // TODO Auto-generated catch block
+                E.printStackTrace();
+            }
+        }
+    });
 	JLabel cstl1 = new JLabel("Customer");
 	cstl1.setBounds(100,370,100,25);
 	cstl1.setFont(new Font("",Font.PLAIN,20));
@@ -162,6 +176,18 @@ public void Company_display(String str) throws ClassNotFoundException, SQLExcept
 	JButton trns = new JButton(trnslogo);
 	trns.setBounds(245,210,160,160);
 	p1.add(trns);
+	trns.addActionListener(new ActionListener()
+	{
+		public void actionPerformed(ActionEvent e)
+		{
+			try {
+				new Transaction().transaction_display(strg, 1);
+				f.hide();
+			}
+			catch(Exception err) {}
+			
+		}
+	});
 	JLabel trnsl = new JLabel("Transactions");
 	trnsl.setBounds(265,370,150,25);
 	trnsl.setFont(new Font("",Font.PLAIN,20));
