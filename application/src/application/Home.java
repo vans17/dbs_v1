@@ -22,7 +22,7 @@ public class Home {
 	
 	static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 	static final String NAME = "root";
-	static final String PASSWORD = "rootpassword";
+	static final String PASSWORD = "Sharvani17#";
 	static final String URL = "jdbc:mysql://localhost:3306/dbs_v1";
 	static Connection connection;
 	static String query;
@@ -343,6 +343,20 @@ public class Home {
 		cstl1.setFont(new Font("",Font.PLAIN,20));
 		cstl1.setForeground(new Color(53,0,102));
 		p1.add(cstl1);
+		cst.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+
+                try {
+                	
+                	new Customer().customer_display(strg,1);
+                } catch (Exception E) {
+                    // TODO Auto-generated catch block
+                    E.printStackTrace();
+                }
+            }
+        });
 		JLabel cstl2 = new JLabel("History");
 		cstl2.setBounds(110,390,100,25);
 		cstl2.setFont(new Font("",Font.PLAIN,20));
