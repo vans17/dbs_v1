@@ -248,13 +248,13 @@ public class Cart {
 						JLabel bg1 = new JLabel("",white_bg,JLabel.CENTER);
 						cst_dtl.add(bg1);
 						JLabel nl = new JLabel("Name: ");
-						nl.setBounds(100,30,300,30);
+						nl.setBounds(100,60,300,30);
 						nl.setFont(new Font("Times New Roman",Font.PLAIN,16));
 						bg1.add(nl);
-						JLabel cidl = new JLabel("Customer ID: ");
-						cidl.setBounds(100,60,300,30);
-						cidl.setFont(new Font("Times New Roman",Font.PLAIN,16));
-						bg1.add(cidl);
+//						JLabel cidl = new JLabel("Customer ID: ");
+//						cidl.setBounds(100,60,300,30);
+//						cidl.setFont(new Font("Times New Roman",Font.PLAIN,16));
+//						bg1.add(cidl);
 						JLabel al = new JLabel("Age: ");
 						al.setBounds(100,90,300,30);
 						al.setFont(new Font("Times New Roman",Font.PLAIN,16));
@@ -268,13 +268,13 @@ public class Cart {
 						adl.setFont(new Font("Times New Roman",Font.PLAIN,16));
 						bg1.add(adl);
 						JTextField eda = new JTextField();
-						eda.setBounds(230,30,200,25);
+						eda.setBounds(230,60,200,25);
 						eda.setFont(new Font("Times New Roman",Font.PLAIN,16));
 						bg1.add(eda);
-						JTextField edb = new JTextField();
-						edb.setBounds(230,60,200,25);
-						edb.setFont(new Font("Times New Roman",Font.PLAIN,16));
-						bg1.add(edb);
+//						JTextField edb = new JTextField();
+//						edb.setBounds(230,60,200,25);
+//						edb.setFont(new Font("Times New Roman",Font.PLAIN,16));
+//						bg1.add(edb);
 						JTextField edc = new JTextField();
 						edc.setBounds(230,90,200,25);
 						edc.setFont(new Font("Times New Roman",Font.PLAIN,16));
@@ -324,8 +324,8 @@ public class Cart {
 									msg1.setVisible(true);
 								}
 								else {
-									//query= "INSERT INTO customer ('Name', 'Age', 'Contact_no', 'Address') VALUES('"+w1+"',"+w3+","+w4+",'"+w5+"');";
-									query = "insert into customer values('"+w1+"','"+w2+"',"+w3+","+w4+",'"+w5+"');";
+									query= "INSERT INTO customer (Name, Age, Contact_no, Address) VALUES('"+w1+"',"+w3+","+w4+",'"+w5+"');";
+									//query = "insert into customer values('"+w1+"','"+w2+"',"+w3+","+w4+",'"+w5+"');";
 									try {
 										statement1.execute(query);
 									JOptionPane.showMessageDialog(null,"Customer details inserted Successfully","Success Operation",1);
