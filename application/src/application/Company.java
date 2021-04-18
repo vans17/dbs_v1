@@ -1,3 +1,4 @@
+
 package application;
 import java.awt.*;
 import java.awt.event.*;
@@ -161,18 +162,6 @@ public void Company_display(String str) throws ClassNotFoundException, SQLExcept
 	JButton trns = new JButton(trnslogo);
 	trns.setBounds(245,210,160,160);
 	p1.add(trns);
-	trns.addActionListener(new ActionListener()
-	{
-		public void actionPerformed(ActionEvent e)
-		{
-			try {
-				new Transaction().transaction_display(strg, 1);
-				f.hide();
-			}
-			catch(Exception err) {}
-			
-		}
-	});
 	JLabel trnsl = new JLabel("Transactions");
 	trnsl.setBounds(265,370,150,25);
 	trnsl.setFont(new Font("",Font.PLAIN,20));
@@ -298,7 +287,11 @@ public void Company_display(String str) throws ClassNotFoundException, SQLExcept
 	{
 		public void actionPerformed(ActionEvent e)
 		{
-
+//			if((dctf1.getText().toString().trim().length()==0))
+//			checkname.setVisible(true);
+//			else if ((dctf1.getText().toString().trim().length()!=10)){
+//			 checknumber.setVisible(true);
+//			}
 				try {
 					String a;
 					a=dctf1.getText().toString().trim();
@@ -646,7 +639,6 @@ public void Company_display(String str) throws ClassNotFoundException, SQLExcept
 							 JOptionPane.showMessageDialog(null,"Contact info inserted Successfully","Success Operation",1);
 						f.hide();
 						Company cps = new Company();
-						acf.hide();
 						try {
 							cps.Company_display(strg);
 						} catch (ClassNotFoundException | SQLException e1) {
@@ -658,8 +650,7 @@ public void Company_display(String str) throws ClassNotFoundException, SQLExcept
 						e1.printStackTrace();
 						 JOptionPane.showMessageDialog(null,"No company entry with this name","Error",2);
 					}
-					//
-					}
+					acf.hide();}
 				}
 			});
 			acf.setResizable(false);
