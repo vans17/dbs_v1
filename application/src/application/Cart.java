@@ -36,7 +36,7 @@ public class Cart {
 	
 	static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 	static final String NAME = "root";
-	static final String PASSWORD = "rootpassword";
+	static final String PASSWORD = "Niveshine150";
 	static final String URL = "jdbc:mysql://localhost:3306/dbs_v1";
 	static Connection connection;
 	static String query,query1;
@@ -593,7 +593,7 @@ public class Cart {
 							result = statement.executeQuery(query);
 							while(result.next())
 							{
-								query = "insert into customer_history values ('"+trnsid+"','"+date12+"',"+result.getString("batch_no")+","+fin1+",'"+time12+"',"+w2+");";
+								query = "insert into customer_history values ('"+trnsid+"','"+date12+"',"+result.getString("batch_no")+","+fin1+",'"+time12+"','"+w2+"');";
 								statement1.execute(query);
 							}
 							query = "select * from cart"+str+";";
