@@ -403,6 +403,8 @@ public class Customer{
 		{
 			public void actionPerformed(ActionEvent e)
 			{
+				lgint.getDataVector().removeAllElements();
+				lgint.fireTableDataChanged();
 				String dt="",expdate="",qty="";
 				Customer b=new Customer();
 				String cid = b.extract_ID(cbmed.getSelectedItem().toString().trim());
