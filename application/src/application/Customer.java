@@ -272,7 +272,7 @@ public class Customer{
 			}
 		});
 		JLabel cstl1 = new JLabel("Transactions");
-		cstl1.setBounds(100,370,100,25);
+		cstl1.setBounds(100,370,200,25);
 		cstl1.setFont(new Font("",Font.PLAIN,20));
 		cstl1.setForeground(new Color(53,0,102));
 		p1.add(cstl1);
