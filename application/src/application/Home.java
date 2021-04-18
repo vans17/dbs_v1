@@ -265,15 +265,7 @@ public class Home {
 							ep.hide();
 							
 						}
-						
-						
-						
-						
-									
-						
-						
-						
-						
+
 						
 					}
 				});
@@ -282,6 +274,83 @@ public class Home {
 				ep.setVisible(true);
 			}
 		});
+		
+		JButton report = new JButton("Salary Report");
+		report.setBounds(1000, 75, 160, 40);
+		p0.add(report);
+		report.addActionListener(new ActionListener()
+		{
+			
+
+			public void actionPerformed(ActionEvent e)
+			{
+				JFrame ep = new JFrame("Salary Report");
+				ep.setBounds(600,250,500,500);
+				ep.setIconImage(editlogo.getImage());
+				JPanel p0 = new JPanel();
+				p0.setBorder(blackline);
+				p0.setBounds(0,0,800,800);
+				p0.setBackground(new Color(0,0,0,0));
+				p0.setLayout(null);
+				p0.setVisible(true);
+				ep.add(p0);
+				
+				JLabel jj= new JLabel("Salary Report");
+				jj.setBounds(180,15,100,30);
+				p0.add(jj);
+				Object[] columns = {"ID","Name","Salary"};
+				JTable lgin = new JTable();
+				lgin.setBounds(700,300,300,300);
+				lgin.setRowHeight(25);
+				p0.add(lgin);
+				DefaultTableModel lgint = new DefaultTableModel();
+				lgint.setColumnIdentifiers(columns);
+				lgin.setModel(lgint);
+				JScrollPane sp = new JScrollPane(lgin);
+				sp.setBounds(50,50,380,380);
+				p0.add(sp);
+				Object[] row = new Object[3];
+				
+				
+					String query1 = "select * from employee;";
+					
+					try {
+						ResultSet result1 = statement.executeQuery(query1);
+						
+						
+						while(result1.next())
+						{
+							
+							row[0]=result1.getString("ID");
+							row[1]=result1.getString("Name");
+							row[2]=result1.getString("Salary");
+							
+							if(!row[0].equals("0")) {
+								lgint.addRow(row);
+							}
+							
+							
+							
+							
+						}
+						
+					}
+					catch(Exception E) {
+						E.printStackTrace();
+					}
+					
+
+				
+				ep.setResizable(false);
+				ep.setLayout(null);
+				ep.setVisible(true);
+			
+			}
+			
+			
+		});
+		
+		
 		
 		JLabel l2 = new JLabel();
 		l2.setText("Home");
